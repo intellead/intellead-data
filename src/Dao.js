@@ -11,11 +11,13 @@ class Dao {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
             } else {
                 console.log('Connection established to', url);
-                var collection = db.collection('lead');
-                collection.insertMany([lead], function(err, result) {
-                    if (err) return console.log(err);
-                    callback(result);
-                });
+                var insertDocument = function(db, callback) {
+                    db.collection('lead').insertOne( {lead}, function(err, result) {
+                        assert.equal(err, null);
+                        console.log("Inserted a document into the lead collection.");
+                        callback();
+                    });
+                };
                 db.close();
             }
         });
