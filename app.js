@@ -7,7 +7,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
-var mongodb = require('mongodb');
 var Dao = require('../src/Dao');
 
 // view engine setup
