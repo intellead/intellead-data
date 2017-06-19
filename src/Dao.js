@@ -20,13 +20,5 @@ class Dao {
         });
     }
 
-    var insertDocument = function(db, callback) {
-    db.collection('lead').insertOne( {lead}, function(err, result) {
-        assert.equal(err, null);
-        console.log("Inserted a document into the lead collection.");
-        callback();
-    });
-};
-
 }
 module.exports = Dao;
