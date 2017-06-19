@@ -14,7 +14,6 @@ class Dao {
                     console.log("Inserted a document into the lead collection.");
                     db.close();
                 });
-
             }
         });
     }
