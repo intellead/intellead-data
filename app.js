@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/', function (req, res) {
     const body = req.body;
     console.log('[BODY] ' + body);
+    console.log(body.toJSON());
     res.set('Content-Type', 'text/plain');
     res.status(200).send('You sent: ${body} to Express');
 });
