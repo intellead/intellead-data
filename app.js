@@ -7,6 +7,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
+var mongodb = require('mongodb');
+var Dao = require('../src/Dao');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,19 +23,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Route that receives a POST request to /
-app.post('/json', function (req, res) {
+app.post('/', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
-    console.log('[BODY] ' + body);
-    console.log('[LEADS] ' + body["leads"]);
-    console.log('[KEYS]' + Object.keys(body));
-    console.log('[KEYS FROM LEADS]' + Object.keys(body["leads"]));
     var leads = body["leads"];
+    var dao = new Dao();
     for(var lead in leads) {
-        console.log(leads[lead]);
+        dao.save(leads[lead]);
     }
-    //console.log('[NAME] ' + body["name"]);
-    //console.log('[VALUES] ' + Object.values(body));
     res.sendStatus(200);
 });
 
