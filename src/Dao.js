@@ -12,9 +12,9 @@ class Dao {
             } else {
                 db.collection('lead').insertOne( {lead}, function(err, result) {
                     console.log("Inserted a document into the lead collection.");
-                    callback();
+                    db.close();
                 });
-                db.close();
+
             }
         });
     }
