@@ -1,7 +1,7 @@
 'use strict';
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var url = 'mongodb://vinigomes:masterkey@ds131492.mlab.com:31492/heroku_blp06tvh';
+var url = process.env.MONGODB_URI;
 
 class Dao {
 
