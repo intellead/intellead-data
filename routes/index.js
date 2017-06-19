@@ -10,9 +10,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.post('/', urlencodedParser, function (req, res) {
     var body = req.body;
+    console.log('[BODY] ' + body);
     if (!body) return res.sendStatus(400);
-    console.log(body);
-    return res.sendStatus(200);
+    res.sendStatus(200);
     res.render('index', { title: 'Express' });
 });
 
