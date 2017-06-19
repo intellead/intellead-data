@@ -11,7 +11,6 @@ class Dao {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
             } else {
                 db.collection('lead').insertOne( {lead}, function(err, result) {
-                    assert.equal(err, null);
                     console.log("Inserted a document into the lead collection.");
                     callback();
                 });
