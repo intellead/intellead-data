@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -19,11 +21,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Route that receives a POST request to /
-app.post('/', function (req, res) {
+app.post('/json', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
     console.log('[BODY] ' + body);
-    console.log('[BODY] ' + body.toString());
+    console.log('[BODY] ' + body.Body);
     res.sendStatus(200);
 });
 
