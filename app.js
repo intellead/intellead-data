@@ -26,9 +26,9 @@ app.post('/json', function (req, res) {
     if (!body) return res.sendStatus(400);
     console.log('[BODY] ' + body);
     console.log('[LEADS] ' + body["leads"]);
+    console.log('[NAME FROM LEADS]' + Object.keys(body["leads"]));
     console.log('[NAME] ' + body["name"]);
-    console.log('[KEYS] ' + Object.keys(body));
-    console.log('[VALUES] ' + Object.values(body));
+    //console.log('[VALUES] ' + Object.values(body));
     res.sendStatus(200);
 });
 
