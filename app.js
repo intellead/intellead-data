@@ -20,11 +20,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Route that receives a POST request to /
 app.post('/', function (req, res) {
-    const body = req.body;
+    var body = req.body;
+    if (!body) return res.sendStatus(400);
     console.log('[BODY] ' + body);
-    console.log(body.toJSON());
-    res.set('Content-Type', 'text/plain');
-    res.status(200).send('You sent: ${body} to Express');
+    console.log('[BODY] ' + body.toString());
+    res.sendStatus(200);
 });
 
 // catch 404 and forward to error handler
