@@ -29,8 +29,9 @@ app.post('/json', function (req, res) {
     console.log('[KEYS]' + Object.keys(body));
     console.log('[KEYS FROM LEADS]' + Object.keys(body["leads"]));
     var leads = body["leads"];
-
-
+    for(var lead in leads) {
+        console.log(lead, leads[tipoNome]);
+    }
     //console.log('[NAME] ' + body["name"]);
     //console.log('[VALUES] ' + Object.values(body));
     res.sendStatus(200);
