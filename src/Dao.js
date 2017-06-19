@@ -10,7 +10,6 @@ class Dao {
             if (err) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
             } else {
-                console.log('Connection established to', url);
                 var insertDocument = function(db, callback) {
                     db.collection('lead').insertOne( {lead}, function(err, result) {
                         assert.equal(err, null);
