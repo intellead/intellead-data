@@ -25,7 +25,8 @@ app.post('/json', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
     console.log('[BODY] ' + body);
-    console.log('[BODY] ' + body.Body);
+    console.log('[LEADS] ' + body["leads"]);
+    console.log('[NAME] ' + body["name"]);
     res.sendStatus(200);
 });
 
