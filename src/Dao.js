@@ -16,6 +16,6 @@ class Dao {
             }
         });
     }
-}
 
+}
 module.exports = Dao;
