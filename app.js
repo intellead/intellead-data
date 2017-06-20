@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Route that receives a POST request to /
-app.post('/', function (req, res) {
+app.post('/rd-webhook', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
     var leads = body["leads"];
