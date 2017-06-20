@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/', index);
 
 // Route that receives a POST request to /
-app.post('/rdwebhook', function (req, res) {
+app.post('/', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
     var leads = body["leads"];
