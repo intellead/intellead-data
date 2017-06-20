@@ -31,7 +31,6 @@ app.post('/rd-webhook', function (req, res) {
     var leads = body["leads"];
     var dao = new Dao();
     for(var lead in leads) {
-        console.log((leads[lead])['lead']);
         dao.save(leads[lead]);
     }
     res.sendStatus(200);
