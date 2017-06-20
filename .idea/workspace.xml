@@ -31,8 +31,8 @@
       <file leaf-file-name="Dao.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Dao.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="43" lean-forward="false" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+            <state relative-caret-position="136">
+              <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -310,12 +310,12 @@
       <option name="presentableId" value="Default" />
       <updated>1497876217586</updated>
       <workItem from="1497876219245" duration="19502000" />
-      <workItem from="1497962160895" duration="8860000" />
+      <workItem from="1497962160895" duration="8999000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28362000" />
+    <option name="totallyTimeSpent" value="28501000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -436,8 +436,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Dao.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="43" lean-forward="false" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+        <state relative-caret-position="136">
+          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
           <folding />
         </state>
       </provider>
