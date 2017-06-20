@@ -10,7 +10,7 @@ class Dao {
             if (err) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
             } else {
-                db.collection('lead').insertOne( {lead}, function(err, result) {
+                db.collection('leads').insertOne( {lead}, function(err, result) {
                     console.log("Inserted a document into the lead collection.");
                     db.close();
                 });
