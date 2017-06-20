@@ -5,10 +5,11 @@ var url = process.env.MONGODB_URI;
 
 class Dao {
 
-    save(lead) {
+    saveAndUpdate(lead, callback) {
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
+                callback(err);
             } else {
                 db.collection('leads').updateOne(
                     {"_id" : lead._id},
@@ -17,12 +18,9 @@ class Dao {
                     function(err, result) {
                         console.log("Inserted a document into the lead collection with id: " + lead._id);
                         db.close();
+                        callback(err, result);
                     }
                 );
-                // db.collection('leads').insertOne( {lead}, function(err, result) {
-                //     console.log("Inserted a document into the lead collection with id: " + lead.id);
-                //     db.close();
-                // });
             }
         });
     }
