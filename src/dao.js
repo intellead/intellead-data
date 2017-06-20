@@ -3,7 +3,7 @@ var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var url = process.env.MONGODB_URI;
 
-class Dao {
+class dao {
 
     save(lead) {
         MongoClient.connect(url, function (err, db) {
@@ -19,4 +19,4 @@ class Dao {
     }
 
 }
-module.exports = Dao;
+module.exports = dao;

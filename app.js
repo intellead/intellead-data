@@ -7,7 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
-var Dao = require('./src/Dao');
+var dao = require('./src/dao');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +26,6 @@ app.post('/rd-webhook', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
     var leads = body["leads"];
-    var dao = new Dao();
     for(var lead in leads) {
         dao.save(leads[lead]);
     }
