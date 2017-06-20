@@ -30,8 +30,14 @@ app.post('/rd-webhook', function (req, res) {
     if (!body) return res.sendStatus(400);
     var leads = body["leads"];
     var dao = new Dao();
-    for(var lead in leads) {
-        dao.save(leads[lead]);
+    for(var index in leads) {
+        var lead = leads[index];
+        //var obj  = JSON.parse(json)[0];
+        //obj.id = obj._id;
+        //delete obj._id;
+        lead._id = lead.id;
+        delete lead.id;
+        dao.save(lead);
     }
     res.sendStatus(200);
 });
