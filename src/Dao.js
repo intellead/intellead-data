@@ -29,13 +29,3 @@ class Dao {
 
 }
 module.exports = Dao;
-
-db.people.update(
-    { name: "Andy" },
-    {
-        name: "Andy",
-        rating: 1,
-        score: 1
-    },
-    { upsert: true }
-)
