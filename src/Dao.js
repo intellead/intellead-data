@@ -11,11 +11,11 @@ class Dao {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
             } else {
                 db.collection('leads').updateOne(
-                    {"_id" : lead.id},
+                    {"_id" : lead._id},
                     {lead},
                     {upsert : true},
                     function(err, result) {
-                        console.log("Inserted a document into the lead collection with id: " + lead.id);
+                        console.log("Inserted a document into the lead collection with id: " + lead._id);
                         db.close();
                     }
                 );
