@@ -22,6 +22,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Cache-Control");
+    next();
+});
+
 app.use('/', index);
 
 // Route that receives a POST request to /
@@ -38,10 +44,22 @@ app.post('/rd-webhook', function (req, res) {
             if (err) {
                 return res.sendStatus(400);
             }
-
             res.sendStatus(200);
         });
     }
+});
+
+app.post('/all-leads', function(req, res){
+    //make a user validate with token and email
+    var dao = new Dao();
+    dao.findAllLeads(function (err, result) {
+        if (err) {
+            return res.sendStatus(400);
+        }
+        if (result) {
+            return res.send(200, result);
+        }
+    });
 });
 
 // catch 404 and forward to error handler
