@@ -25,7 +25,7 @@ class Dao {
         });
     }
 
-    findAllLeads(user, callback) {
+    findAllLeads(callback) {
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
