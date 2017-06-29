@@ -58,10 +58,10 @@ app.post('/all-leads', function(req, res){
     var page_number = parseInt(req.body.page_number),
         page_size = parseInt(req.body.page_size);
 
-    console.log(req.body.page_number);
-    console.log(req.body.page_size);
-    console.log(page_number);
-    console.log(page_size);
+    console.log("REQ1: " + req.body.page_number);
+    console.log("REQ2: " + req.body.page_size);
+    console.log("VAR1: " + page_number);
+    console.log("VAR2: " + page_size);
     //make a user validate with token and email
     var dao = new Dao();
     dao.findAllLeads(page_number, page_size, function (err, result) {
