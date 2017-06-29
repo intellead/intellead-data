@@ -39,7 +39,7 @@ class Dao {
                     }
                     if (docs) {
                         db.close();
-                        callback(err, result);
+                        callback(err, docs);
                     }
                     db.close();
                 });
