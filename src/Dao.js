@@ -25,16 +25,15 @@ class Dao {
         });
     }
 
-    findAllLeads(callback) {
-        var page_size = 10;
-        var N = 1;
+    findAllLeads(page_number, page_size, callback) {
+        var total_records;
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
                 callback(err);
             } else {
                 db.collection('leads').find()
-                                      .skip((N-1)*page_size)
+                                      .skip((page_number-1)*page_size)
                                       .limit(page_size)
                                       .sort({"created_at":-1})
                                       .toArray(function(err, docs) {
