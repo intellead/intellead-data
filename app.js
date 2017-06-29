@@ -57,6 +57,11 @@ router.get('/rd-webhook', function(req, res, next) {
 app.post('/all-leads', function(req, res){
     var page_number = parseInt(req.body.page_number),
         page_size = parseInt(req.body.page_size);
+
+    console.log(req.body.page_number);
+    console.log(req.body.page_size);
+    console.log(page_number);
+    console.log(page_size);
     //make a user validate with token and email
     var dao = new Dao();
     dao.findAllLeads(page_number, page_size, function (err, result) {
