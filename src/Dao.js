@@ -31,13 +31,13 @@ class Dao {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
                 callback(err);
             } else {
-                db.collection('leads').find(function(err, result) {
+                db.collection('leads').find().toArray(function(err, docs) {
                     if (err) {
                         console.log(err);
                         db.close();
                         return callback(err);
                     }
-                    if (result) {
+                    if (docs) {
                         db.close();
                         callback(err, result);
                     }
