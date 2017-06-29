@@ -50,7 +50,12 @@ app.post('/rd-webhook', function (req, res) {
     }
 });
 
+router.get('/rd-webhook', function(req, res, next) {
+    res.sendStatus(200);
+});
+
 app.post('/all-leads', function(req, res){
+    console.log('ENTROU');
     //make a user validate with token and email
     var dao = new Dao();
     dao.findAllLeads(function (err, result) {
