@@ -29,7 +29,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use('/', index);
+app.use('/', router);
 
 // Route that receives a POST request to /
 app.post('/rd-webhook', function (req, res) {
