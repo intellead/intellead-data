@@ -63,7 +63,8 @@ app.post('/all-leads', function(req, res){
             return res.sendStatus(400);
         }
         if (result) {
-            return res.send(200, result);
+            console.log(result);
+            return rest.status(200).send(result);
         }
     });
 });
