@@ -57,7 +57,6 @@ router.get('/rd-webhook', function(req, res, next) {
 app.post('/all-leads', function(req, res){
     var page_number = parseInt(req.body.page_number),
         page_size = parseInt(req.body.page_size);
-    //make a user validate with token and email
     var dao = new Dao();
     dao.findAllLeads(page_number, page_size, function (err, result) {
         if (err) {
@@ -70,6 +69,23 @@ app.post('/all-leads', function(req, res){
 });
 
 router.get('/all-leads', function(req, res, next) {
+    res.sendStatus(200);
+});
+
+app.post('/lead-info', function(req, res){
+    var lead_id = req.body.lead_id;
+    var dao = new Dao();
+    dao.findLead(lead_id, function (err, lead) {
+        if (err) {
+            return res.sendStatus(400);
+        }
+        if (result) {
+            return res.status(200).send(lead);
+        }
+    });
+});
+
+router.get('/lead-info', function(req, res, next) {
     res.sendStatus(200);
 });
 

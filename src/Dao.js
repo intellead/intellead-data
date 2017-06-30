@@ -52,5 +52,28 @@ class Dao {
         });
     }
 
+    findLead(id, callback) {
+        MongoClient.connect(url, function (err, db) {
+            if (err) {
+                console.log('Unable to connect to the mongoDB server. Error:', err);
+                callback(err);
+            } else {
+                db.collection('leads').findOne({"_id" : id}, function(err, lead) {
+                    if (err) {
+                        console.log(err);
+                        db.close();
+                        return callback(err);
+                    }
+                    if (lead) {
+                        db.close();
+                        callback(err, lead);
+                    }
+                    db.close();
+                });
+            }
+        });
+    }
+
+
 }
 module.exports = Dao;
