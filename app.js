@@ -79,7 +79,7 @@ app.post('/lead-info', function(req, res){
         if (err) {
             return res.sendStatus(400);
         }
-        if (result) {
+        if (lead) {
             return res.status(200).send(lead);
         }
     });
