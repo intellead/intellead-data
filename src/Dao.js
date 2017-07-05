@@ -83,8 +83,6 @@ class Dao {
                     callback(err);
                 } else {
                     if (rich_information.hasOwnProperty(property)) {
-                        console.log("property: " + property);
-                        console.log("value: " + rich_information[property]);
                         db.collection('leads').updateOne(
                             {   "_id" : id,
                                 "$or": [{ property: { "$exists": false } },{ property: null }]
@@ -97,6 +95,8 @@ class Dao {
                                     return callback(err);
                                 }
                                 if(result) {
+                                    console.log("property: " + property);
+                                    console.log("value: " + rich_information[property]);
                                     console.log("Lead enriched");
                                 }
                             });
