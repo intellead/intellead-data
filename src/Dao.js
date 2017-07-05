@@ -76,10 +76,6 @@ class Dao {
     }
 
     updateEnrichedLeadInformation(id, rich_information, callback) {
-        db.collection('leads').update(
-            {$or:[{"url":null},{"url":{$exists:false}}]},
-            {$set:{"url":"http://www.mycompany.com"}})
-
         for (var property in rich_information) {
             MongoClient.connect(url, function (err, db) {
                 if (err) {
