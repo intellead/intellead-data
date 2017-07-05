@@ -3,6 +3,7 @@ var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var url = process.env.MONGODB_URI;
 
+
 class Dao {
 
     saveAndUpdate(lead, callback) {
@@ -74,8 +75,11 @@ class Dao {
         });
     }
 
-
     updateEnrichedLeadInformation(id, rich_information, callback) {
+        db.collection('leads').update(
+            {$or:[{"url":null},{"url":{$exists:false}}]},
+            {$set:{"url":"http://www.mycompany.com"}})
+
         for (var property in rich_information) {
             MongoClient.connect(url, function (err, db) {
                 if (err) {
@@ -83,11 +87,11 @@ class Dao {
                     callback(err);
                 } else {
                     if (rich_information.hasOwnProperty(property)) {
-                        db.collection('leads').updateOne(
-                            {   "_id" : id,
-                                "$or": [{ property: { "$exists": false } },{ property: null }]
-                            },
-                            { "$set": { property: rich_information[property]}},
+                        var query = "'_id' : +"+id+", '$or': [{ "+property+": { '$exists': false } },{ "+property+": null }]";
+                        var set = "'$set': { "+property+": "+rich_information[property]+"}";
+                        db.collection('leads').update(
+                            {query},
+                            {set},
                             function(err, result) {
                                 if (err) {
                                     console.log(err);
