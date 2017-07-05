@@ -84,7 +84,7 @@ class Dao {
                 for (var property in rich_information) {
                     if (rich_information.hasOwnProperty(property)) {
                         if (typeof rich_information[property] == "object") {
-                            updateEnrichedLeadInformation(id, rich_information[property]);
+                            new Dao().updateEnrichedLeadInformation(id, rich_information[property]);
                         } else {
                             console.log("property: " + property);
                             console.log("value: " + rich_information[property]);
