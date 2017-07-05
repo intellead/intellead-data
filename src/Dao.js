@@ -106,7 +106,7 @@ class Dao {
                 }
             });
         }
-        callback(err);
+        callback(200);
     }
 
     percorrer(rich_information) {
