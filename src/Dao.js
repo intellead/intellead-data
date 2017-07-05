@@ -2,6 +2,13 @@
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var url = process.env.MONGODB_URI;
+var _ = require('lodash');
+
+function customizer(objValue, srcValue) {
+    return _.isUndefined(objValue) || _.isNull(objValue) ? srcValue : objValue;
+}
+
+var merge = _.partialRight(_.assignInWith, customizer);
 
 
 class Dao {
@@ -75,52 +82,41 @@ class Dao {
         });
     }
 
-    updateEnrichedLeadInformation(id, rich_information, callback) {
-        for (var property in rich_information) {
-            MongoClient.connect(url, function (err, db) {
-                if (err) {
-                    console.log('Unable to connect to the mongoDB server. Error:', err);
-                    callback(err);
-                } else {
-                    if (rich_information.hasOwnProperty(property)) {
-                        var query = "'_id' : +"+id+", '$or': [{ "+property+": { '$exists': false } },{ "+property+": null }]";
-                        var set = "'$set': { "+property+": "+rich_information[property]+"}";
+    updateEnrichedLeadInformation(lead_id, rich_information, callback) {
+        new Dao().findLead(lead_id, function (err, result) {
+            if (err) {
+                return res.sendStatus(400);
+            }
+            if (result) {
+                let lead = result.lead;
+                var lead_enriched = merge(lead, rich_information);
+                MongoClient.connect(url, function (err, db) {
+                    if (err) {
+                        console.log('Unable to connect to the mongoDB server. Error:', err);
+                        callback(err);
+                    } else {
                         db.collection('leads').update(
-                            {query},
-                            {set},
-                            function(err, result) {
+                            {"_id": id},
+                            {"lead" : lead_enriched},
+                            function (err, result) {
                                 if (err) {
                                     console.log(err);
                                     db.close();
                                     return callback(err);
                                 }
-                                if(result) {
-                                    console.log("property: " + property);
-                                    console.log("value: " + rich_information[property]);
-                                    console.log("Lead enriched");
+                                if (result) {
+                                    db.close();
+                                    callback(err, lead);
                                 }
-                            });
-                    } else {
-                        db.close();
+                                db.close();
+                            }
+                        );
                     }
-                }
-            });
-        }
-        callback(200);
-    }
-
-    percorrer(rich_information) {
-        for (var property in rich_information) {
-            if (rich_information.hasOwnProperty(property)) {
-                if (typeof rich_information[property] == "object") {
-                    percorrer(rich_information[property]);
-                } else {
-
-                    resultado.push(rich_information[property]);
-                }
+                });
             }
-        }
+        });
     }
+
 
 }
 module.exports = Dao;
