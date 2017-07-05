@@ -31,7 +31,7 @@ app.use(function(req, res, next) {
 
 app.use('/', router);
 
-// Route that receives a POST request to /
+// Route that receives a POST request to rd-webhook/
 app.post('/rd-webhook', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
@@ -88,6 +88,27 @@ app.post('/lead-info', function(req, res){
 router.get('/lead-info', function(req, res, next) {
     res.sendStatus(200);
 });
+
+app.post('/update-enriched-lead-information', function(req, res){
+    var lead_id = req.body.lead_id;
+    console.log(lead_id);
+    var rich_information = req.body.rich_information;
+    console.log(rich_information);
+    var dao = new Dao();
+    dao.updateEnrichedLeadInformation(lead_id, rich_information, function (err, result) {
+        if (err) {
+            return res.sendStatus(400);
+        }
+        if (result) {
+            return res.sendStatus(200);
+        }
+    });
+});
+
+router.get('/update-enriched-lead-information', function(req, res, next) {
+    res.sendStatus(200);
+});
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
