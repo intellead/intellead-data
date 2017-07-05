@@ -96,7 +96,7 @@ class Dao {
                         callback(err);
                     } else {
                         db.collection('leads').update(
-                            {"_id": id},
+                            {"_id": lead_id},
                             {"lead" : lead_enriched},
                             function (err, result) {
                                 if (err) {
