@@ -83,33 +83,31 @@ class Dao {
                     callback(err);
                 } else {
                     if (rich_information.hasOwnProperty(property)) {
-                        if (typeof rich_information[property] == "object") {
-                            new Dao().updateEnrichedLeadInformation(id, rich_information[property]);
-                        } else {
-                            console.log("property: " + property);
-                            console.log("value: " + rich_information[property]);
-                            db.collection('leads').updateOne(
-                                {   "_id" : id,
-                                    "$or": [{ property: { "$exists": false } },{ property: null }]
-                                },
-                                { "$set": { property: rich_information[property]}},
-                                function(err, lead) {
-                                    if (err) {
-                                        console.log(err);
-                                        db.close();
-                                        return callback(err);
-                                    }
-                                    if (lead) {
-                                        db.close();
-                                        callback(err, lead);
-                                    }
+                        console.log("property: " + property);
+                        console.log("value: " + rich_information[property]);
+                        db.collection('leads').updateOne(
+                            {   "_id" : id,
+                                "$or": [{ property: { "$exists": false } },{ property: null }]
+                            },
+                            { "$set": { property: rich_information[property]}},
+                            function(err, result) {
+                                if (err) {
+                                    console.log(err);
                                     db.close();
-                                });
-                        }
+                                    return callback(err);
+                                }
+                                if(result) {
+                                    console.log("Lead enriched");
+                                    callback(err, lead);
+                                }
+                            });
+                    } else {
+                        db.close();
                     }
                 }
             });
         }
+        callback(err, lead);
     }
 
     percorrer(rich_information) {
