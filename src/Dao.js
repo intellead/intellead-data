@@ -98,7 +98,7 @@ class Dao {
                                 }
                                 if(result) {
                                     console.log("Lead enriched");
-                                    callback(err, lead);
+                                    callback(err, result);
                                 }
                             });
                     } else {
@@ -107,7 +107,7 @@ class Dao {
                 }
             });
         }
-        callback(err, lead);
+        callback(err);
     }
 
     percorrer(rich_information) {
