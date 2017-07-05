@@ -33,21 +33,21 @@ class Dao {
                 callback(err);
             } else {
                 db.collection('leads').find()
-                                      .skip((page_number-1)*page_size)
-                                      .limit(page_size)
-                                      .sort({"created_at":-1})
-                                      .toArray(function(err, docs) {
-                    if (err) {
-                        console.log(err);
+                    .skip((page_number-1)*page_size)
+                    .limit(page_size)
+                    .sort({"created_at":-1})
+                    .toArray(function(err, docs) {
+                        if (err) {
+                            console.log(err);
+                            db.close();
+                            return callback(err);
+                        }
+                        if (docs) {
+                            db.close();
+                            callback(err, docs);
+                        }
                         db.close();
-                        return callback(err);
-                    }
-                    if (docs) {
-                        db.close();
-                        callback(err, docs);
-                    }
-                    db.close();
-                });
+                    });
             }
         });
     }
@@ -76,12 +76,12 @@ class Dao {
 
 
     updateEnrichedLeadInformation(id, rich_information, callback) {
-        MongoClient.connect(url, function (err, db) {
-            if (err) {
-                console.log('Unable to connect to the mongoDB server. Error:', err);
-                callback(err);
-            } else {
-                for (var property in rich_information) {
+        for (var property in rich_information) {
+            MongoClient.connect(url, function (err, db) {
+                if (err) {
+                    console.log('Unable to connect to the mongoDB server. Error:', err);
+                    callback(err);
+                } else {
                     if (rich_information.hasOwnProperty(property)) {
                         if (typeof rich_information[property] == "object") {
                             new Dao().updateEnrichedLeadInformation(id, rich_information[property]);
@@ -104,12 +104,12 @@ class Dao {
                                         callback(err, lead);
                                     }
                                     db.close();
-                            });
+                                });
                         }
                     }
                 }
-            }
-        });
+            });
+        }
     }
 
     percorrer(rich_information) {
