@@ -98,7 +98,6 @@ class Dao {
                                 }
                                 if(result) {
                                     console.log("Lead enriched");
-                                    callback(err, result);
                                 }
                             });
                     } else {
