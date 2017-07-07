@@ -91,9 +91,7 @@ router.get('/lead-info', function(req, res, next) {
 
 app.post('/update-enriched-lead-information', function(req, res){
     var lead_id = req.body.lead_id;
-    console.log(lead_id);
     var rich_information = req.body.rich_information;
-    console.log(rich_information);
     var dao = new Dao();
     dao.updateEnrichedLeadInformation(lead_id, rich_information, function (err, result) {
         if (err) {

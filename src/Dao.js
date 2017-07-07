@@ -24,7 +24,9 @@ class Dao {
                     {lead},
                     {upsert : true},
                     function(err, result) {
-                        console.log("Inserted a document into the lead collection with id: " + lead._id);
+                        if (err) {
+                            console.log(err);
+                        }
                         db.close();
                         callback(err, result);
                     }

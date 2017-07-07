@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'rdstation-webhook' });
+    res.render('index', { title: 'intellead-data' });
 });
 
 module.exports = router;
