@@ -72,8 +72,9 @@ router.get('/all-leads', function(req, res, next) {
 });
 
 app.post('/lead-info', function(req, res){
+    console.log('REQ_BODY: ' + req.body);
     var lead_id = req.body.lead_id;
-    console.log('[LEAD_ID] '+lead_id)
+    console.log('[LEAD_ID] '+lead_id);
     var dao = new Dao();
     dao.findLead(lead_id, function (err, lead) {
         if (err) {
