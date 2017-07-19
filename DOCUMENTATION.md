@@ -13,7 +13,11 @@ Intellead Data aims to be an easy way to store and retrieval data of leads for I
       <li>Get a copy</li>
     </ul>
   </li>
-  <li>Configuration</li>
+  <li>Configuration
+  <ul>
+    <li>Receiving data</li>
+    <li>Persisting data</li>
+  </li>
   <li>Use Cases
     <ul>
       <li>Receive RDStation data</li>
@@ -49,4 +53,16 @@ This should be as easy as possible for you but there are few things to consider 
 </ul>
 <h3>Configuration</h3>
 Once the application is installed (check Installation) define the following settings to enable the application behavior. 
-
+<h4>Receiving data</h4>
+Today the application receives the RDStation data through a webhook.
+The first configuration to do is to create the webhook through the RDStation Integrations menu.
+You must:
+<ul>
+  <li>set the name of the webhook;</li>
+  <li>To url: https: www.your_host.com<b>/rd-webhook</b>;</li>
+  <li>The trigger and,</li>
+  <li>Conversion events.</li>
+</ul>
+<h4>Persisting data</h4>
+You must config var <b>MONGODB_URI</b> to persist data.
+<h3>Use Cases</h3>
