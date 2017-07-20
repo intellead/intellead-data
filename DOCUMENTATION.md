@@ -66,3 +66,47 @@ You must:
 <h4>Persisting data</h4>
 You must config var <b>MONGODB_URI</b> to persist data.
 <h3>Use Cases</h3>
+Some use cases for intellead-data.
+<h4>Receive RDStation data</h4>
+RDStation provides a webhook to send us data of the lead.
+Once we have configured the webhook in RDStation, the service will be available to receive the data.
+<h4>Return data for all leads</h4>
+In some cases, you might need to retrieve all data from all leads.
+As there may be a lot of information, this service proves paginated data. That way you need to inform the number of leads you want and the number of the page.
+We can call the API like this:
+<code>
+var page = $('#page_number').val();
+var size = $('#page_size').val();
+$.ajax({
+    "crossDomain": true,
+    "url": "https://your_domain.com/all-leads",
+    "method": "POST",
+    "headers": {
+        "content-type": "application/x-www-form-urlencoded",
+        "cache-control": "no-cache"
+    },
+    "data": {
+        page_number : page,
+        page_size : size
+    },
+})
+</code>
+<h4>Return data from a specific lead</h4>
+Sometimes it’s desirable that retrieve all data from a specific lead.
+You just need to inform the id of the lead.
+We can call API like this:
+<code>
+var id = $('#lead_id').val();
+$.ajax({
+    "crossDomain": true,
+    "url": "https://your_domain.com/lead-info",
+    "method": "POST",
+    "headers": {
+        "content-type": "application/x-www-form-urlencoded",
+        "cache-control": "no-cache"
+    },
+    "data": {
+        lead_id : id
+    },
+})
+</code>
