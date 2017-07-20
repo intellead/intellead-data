@@ -74,7 +74,8 @@ Once we have configured the webhook in RDStation, the service will be available 
 In some cases, you might need to retrieve all data from all leads.
 As there may be a lot of information, this service proves paginated data. That way you need to inform the number of leads you want and the number of the page.
 We can call the API like this:
-<code>
+
+```javascript
 var page = $('#page_number').val();
 var size = $('#page_size').val();
 $.ajax({
@@ -90,12 +91,14 @@ $.ajax({
         page_size : size
     },
 })
-</code>
+```
+
 <h4>Return data from a specific lead</h4>
 Sometimes it’s desirable that retrieve all data from a specific lead.
 You just need to inform the id of the lead.
 We can call API like this:
-<code>
+
+```javascript
 var id = $('#lead_id').val();
 $.ajax({
     "crossDomain": true,
@@ -108,5 +111,6 @@ $.ajax({
     "data": {
         lead_id : id
     },
-})
-</code>
+});
+
+```
