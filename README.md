@@ -14,7 +14,7 @@ This project will focus on ECMAScript 6.
 
 <h2>Documentation</h2>
 
-Project documentation is available at DOCUMENTATION.md.
+Project documentation is available at <a href="https://github.com/intellead/intellead-data/blob/master/DOCUMENTATION.md">DOCUMENTATION.md</a>.
 
 <h2>Contributing</h2>
 
