@@ -114,3 +114,29 @@ $.ajax({
 });
 
 ```
+
+<h4>Update lead data with enrichment</h4>
+When the lead information is enriched, this service proves a way to update the data in the database.
+We can call the API like this:
+
+```javascript
+var lead_enriched = JSON.parse(data);
+request.post(
+    'https://your_domain.com/update-enriched-lead-information',
+    { 
+        json: { 
+            lead_id: id, 
+            rich_information: lead_enriched 
+        } 
+    },
+    function (error, response, body) {
+        if (error) {
+            console.log(error);
+        }
+    }
+);
+```
+
+Used by the intellead-enrich service.
+<h3>Copyrights and Licence</h3>
+TO DO
