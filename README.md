@@ -18,4 +18,4 @@ Project documentation is available at <a href="https://github.com/intellead/inte
 
 <h2>Contributing</h2>
 
-See the CONTRIBUTING.md document for details.
+See the <a href="https://github.com/intellead/intellead-data/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a> document for details.
