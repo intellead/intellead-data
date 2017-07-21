@@ -72,7 +72,9 @@ router.get('/all-leads', function(req, res, next) {
 });
 
 app.post('/lead-info', function(req, res){
+    console.log('HERE');
     var lead_id = req.body.lead_id;
+    console.log(lead_id);
     var dao = new Dao();
     dao.findLead(lead_id, function (err, lead) {
         if (err) {
