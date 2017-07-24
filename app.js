@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var router = express.Router();
 var app = express();
+var request = require('request');
 var Dao = require('./src/Dao');
 var MailService = require('./src/MailService');
 
