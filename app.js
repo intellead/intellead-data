@@ -52,7 +52,7 @@ app.post('/rd-webhook', function (req, res) {
             var json_enrich = {
                 'lead_id': lead._id
             };
-            //body: JSON.stringify(json_enrich)
+            //data: json_enrich
             request({
                 method: 'POST',
                 url: enrich_url,
@@ -60,12 +60,12 @@ app.post('/rd-webhook', function (req, res) {
                     'content-type': 'application/x-www-form-urlencoded',
                     'cache-control': 'no-cache'
                 },
-                data: json_enrich
+                body: JSON.stringify(json_enrich)
             }, function (error, response, body) {
                 if (error){
                     console.log(error);
                     mailService.sendMail('Enrich error', error);
-                } else {
+                } else if (response.statusCode == 200) {
                     console.log('ENRICHED');
                     console.log(response.statusCode);
                     var classification_url = 'https://intellead-classification.herokuapp.com/lead_status/'+lead._id;
@@ -126,6 +126,7 @@ router.get('/lead-info', function(req, res, next) {
 });
 
 app.post('/update-enriched-lead-information', function(req, res){
+    console.log('/update-enriched-lead-information');
     var lead_id = req.body.lead_id;
     var rich_information = req.body.rich_information;
     var dao = new Dao();
