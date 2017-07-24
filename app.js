@@ -48,7 +48,7 @@ app.post('/rd-webhook', function (req, res) {
             res.sendStatus(200);
             console.log('[ID]: ' + lead._id);
             var enrich_url = 'https://intellead-enrich.herokuapp.com/';
-            json_enrich = {
+            var json_enrich = {
                 "lead_id": lead._id
             };
             request({ url: enrich_url, method: 'POST', json: json_enrich}, function(error, response, body) {
@@ -57,7 +57,7 @@ app.post('/rd-webhook', function (req, res) {
                 } else {
                     console.log('ENRICHED');
                     console.log(response);
-                    classification_url = 'https://intellead-classification.herokuapp.com/lead_status/'+lead._id;
+                    var classification_url = 'https://intellead-classification.herokuapp.com/lead_status/'+lead._id;
                     request({ url: classification_url, method: 'GET'}, function(error, response, body) {
                         if (error) {
                             mailService.sendMail('Classification error', error);
