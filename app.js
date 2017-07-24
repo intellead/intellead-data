@@ -38,6 +38,7 @@ app.post('/rd-webhook', function (req, res) {
     if (!body) return res.sendStatus(400);
     var leads = body["leads"];
     var dao = new Dao();
+    var mailService = new MailService();
     for (var index in leads) {
         var lead = leads[index];
         lead._id = lead.id;
