@@ -124,6 +124,7 @@ app.post('/update-enriched-lead-information', function(req, res){
             return res.sendStatus(400);
         }
         if (result) {
+            console.log('/update-enriched-lead-information: '+ 200);
             return res.sendStatus(200);
         }
     });
