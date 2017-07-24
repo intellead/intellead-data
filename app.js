@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 var app = express();
 var Dao = require('./src/Dao');
+var MailService = require('./src/MailService');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -82,6 +83,8 @@ app.post('/lead-info', function(req, res){
             return res.status(200).send(lead);
         }
     });
+    var mailService = new MailService();
+    mailService.sendMail(NaN,'Subject Test', 'Body Test')
 });
 
 router.get('/lead-info', function(req, res, next) {
