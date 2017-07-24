@@ -50,10 +50,20 @@ app.post('/rd-webhook', function (req, res) {
             console.log('[ID]: ' + lead._id);
             var enrich_url = 'https://intellead-enrich.herokuapp.com/';
             var json_enrich = {
-                "lead_id": lead._id
+                'lead_id': lead._id
             };
-            request({ url: enrich_url, method: 'POST', json: json_enrich}, function(error, response, body) {
-                if (error) {
+            //body: JSON.stringify(json_enrich)
+            request({
+                method: 'POST',
+                url: enrich_url,
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    'cache-control': 'no-cache'
+                },
+                data: json_enrich
+            }, function (error, response, body) {
+                if (error){
+                    console.log(error);
                     mailService.sendMail('Enrich error', error);
                 } else {
                     console.log('ENRICHED');
