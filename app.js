@@ -57,6 +57,7 @@ app.post('/rd-webhook', function (req, res) {
                     mailService.sendMail('Enrich error', error);
                 } else {
                     console.log('ENRICHED');
+                    console.log(response.statusCode);
                     var classification_url = 'https://intellead-classification.herokuapp.com/lead_status/'+lead._id;
                     request({ url: classification_url, method: 'GET'}, function(error, response, body) {
                         if (error) {
