@@ -4,7 +4,7 @@ var administrator_mail = process.env.ADMINISTRATOR_MAIL;
 var administrator_mail_password = process.env.ADMINISTRATOR_MAIL_PASSWORD;
 var administrator_mail_service = process.env.ADMINISTRATOR_MAIL_SERVICE;
 
-var transporter = nodemailer.createTransport("SMTP", {
+var transporter = nodemailer.createTransport({
     service: administrator_mail_service,
     auth: {
         user: administrator_mail,
