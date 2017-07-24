@@ -22,7 +22,7 @@ var mailOptions = {
 class MailService {
 
 
-    sendMail(to, subject, text) {
+    sendMail(subject, text, to) {
         if (to) {
             mailOptions.to = to;
         }

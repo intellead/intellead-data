@@ -46,6 +46,28 @@ app.post('/rd-webhook', function (req, res) {
                 return res.sendStatus(400);
             }
             res.sendStatus(200);
+            console.log('[ID]: ' + lead._id);
+            var enrich_url = 'https://intellead-enrich.herokuapp.com/';
+            json_enrich = {
+                "lead_id": lead._id
+            };
+            request({ url: enrich_url, method: 'POST', json: json_enrich}, function(error, response, body) {
+                if (error) {
+                    mailService.sendMail('Enrich error', error);
+                } else {
+                    console.log('ENRICHED');
+                    console.log(response);
+                    classification_url = 'https://intellead-classification.herokuapp.com/lead_status/'+lead._id;
+                    request({ url: classification_url, method: 'GET'}, function(error, response, body) {
+                        if (error) {
+                            mailService.sendMail('Classification error', error);
+                        } else {
+                            console.log('[LEAD_STATUS]: ' + response)
+                            //persist the lead_status in lead
+                        }
+                    });
+                }
+            });
         });
     }
 });
@@ -84,7 +106,7 @@ app.post('/lead-info', function(req, res){
         }
     });
     var mailService = new MailService();
-    mailService.sendMail(NaN,'Subject Test', 'Body Test')
+    //mailService.sendMail('Subject Test', 'Body Test')
 });
 
 router.get('/lead-info', function(req, res, next) {

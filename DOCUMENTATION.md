@@ -17,6 +17,7 @@ Intellead Data aims to be an easy way to store and retrieval data of leads for I
   <ul>
     <li>Receiving data</li>
     <li>Persisting data</li>
+    <li>Mail service</li>
   </li>
   <li>Use Cases
     <ul>
@@ -65,6 +66,13 @@ You must:
 </ul>
 <h4>Persisting data</h4>
 You must config var <b>MONGODB_URI</b> to persist data.
+<h4>Mail service</h4>
+Some services send email to the application administrator, such as error warnings.
+This service uses the nodemailer library.
+To do this, you must configure the variables:
+ADMINISTRATOR_MAIL - The administrator's email address.
+ADMINISTRATOR_MAIL_PASSWORD - The administrator's email password.
+ADMINISTRATOR_MAIL_SERVICE - The e-mail service used, eg: gmail, hotmail.
 <h3>Use Cases</h3>
 Some use cases for intellead-data.
 <h4>Receive RDStation data</h4>
