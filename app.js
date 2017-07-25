@@ -53,6 +53,8 @@ app.post('/rd-webhook', function (req, res) {
             var json_enrich = {
                 "lead_id": lead._id
             };
+            console.log(json_enrich);
+            console.log(JSON.stringify(json_enrich));
             request({
                 method: 'POST',
                 url: enrich_url,
