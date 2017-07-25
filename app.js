@@ -60,7 +60,7 @@ app.post('/rd-webhook', function (req, res) {
                     'content-type': 'application/x-www-form-urlencoded',
                     'cache-control': 'no-cache'
                 },
-                json: "teste"
+                data: "teste"
             }, function (error, response, body) {
                 if (error){
                     console.log(error);
