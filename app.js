@@ -62,7 +62,7 @@ app.post('/rd-webhook', function (req, res) {
                     'cache-control': 'no-cache'
                 },
                 body: JSON.stringify(json_enrich),
-                data: JSON.stringify(json_enrich)
+                data: json_enrich
             }, function (error, response, body) {
                 if (error){
                     console.log(error);
