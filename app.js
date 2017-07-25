@@ -61,7 +61,7 @@ app.post('/rd-webhook', function (req, res) {
                     'content-type': 'application/x-www-form-urlencoded',
                     'cache-control': 'no-cache'
                 },
-                body: JSON.stringify(json_enrich),
+                body: json_enrich,
                 data: json_enrich
             }, function (error, response, body) {
                 if (error){
