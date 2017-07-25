@@ -59,9 +59,7 @@ app.post('/rd-webhook', function (req, res) {
                     'content-type': 'application/x-www-form-urlencoded',
                     'cache-control': 'no-cache'
                 },
-                body: {
-                    "lead_id": lead._id
-                },
+                body: "lead_id: "+lead._id,
                 data: {
                     "lead_id": lead._id
                 }
