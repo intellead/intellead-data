@@ -49,7 +49,7 @@ app.post('/rd-webhook', function (req, res) {
             }
             res.sendStatus(200);
             console.log('[ID]: ' + lead._id);
-            var enrich_url = 'https://intellead-enrich.herokuapp.com/';
+            var enrich_url = 'https://intellead-enrich.herokuapp.com/lead-enrichment';
             var json_enrich = {
                 'lead_id': lead._id
             };
