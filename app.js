@@ -61,7 +61,7 @@ app.post('/rd-webhook', function (req, res) {
                     'content-type': 'application/x-www-form-urlencoded',
                     'cache-control': 'no-cache'
                 },
-                body: '{lead_id: 151680927}',
+                body: '{"lead_id": "151680927"}',
                 data: json_enrich
             }, function (error, response, body) {
                 if (error){
