@@ -124,22 +124,20 @@ class Dao {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
                 callback(err);
             } else {
-                db.collection('leads').find()
-                    .skip((1-1)*10)
-                    .limit(10)
-                    .sort({"created_at":-1})
-                    .toArray(function(err, docs) {
-                        if (err) {
-                            console.log(err);
-                            db.close();
-                            return callback(err);
-                        }
-                        if (docs) {
-                            db.close();
-                            callback(err, docs);
-                        }
+                db.collection('leads').find({ "price" : { "$exists" : false } })
+                .sort({"created_at":1})
+                .toArray(function(err, docs) {
+                    if (err) {
+                        console.log(err);
                         db.close();
-                    });
+                        return callback(err);
+                    }
+                    if (docs) {
+                        db.close();
+                        callback(err, docs);
+                    }
+                    db.close();
+                });
             }
         });
         /*
