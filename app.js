@@ -115,6 +115,8 @@ router.get('/update-enriched-lead-information', function(req, res, next) {
 router.get('/lead-to-enrich', function(req, res, next) {
     var dao = new Dao();
     console.log(req.body);
+    var serviceName = req.body.enrichService;
+    console.log(serviceName);
     /*
     var enrichService = req.body.enrichService;
     dao.findLeadsToEnrich(enrichService, function(err, result){
