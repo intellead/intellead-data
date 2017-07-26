@@ -125,7 +125,6 @@ class Dao {
                 callback(err);
             } else {
                 db.collection('leads').find({ "price" : { "$exists" : false } })
-                .sort({"created_at":1})
                 .toArray(function(err, docs) {
                     if (err) {
                         console.log(err);
