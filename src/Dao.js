@@ -124,7 +124,7 @@ class Dao {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
                 callback(err);
             } else {
-                db.collection('leads').find({ "price" : { "$exists" : false } })
+                db.collection('leads').find({ [serviceName] : { "$exists" : false } })
                 .toArray(function(err, docs) {
                     if (err) {
                         console.log(err);
