@@ -119,12 +119,13 @@ class Dao {
     }
 
     findLeadsToEnrich(serviceName, callback) {
+        var leadSericeEnrich = 'lead.'+serviceName;
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
                 callback(err);
             } else {
-                db.collection('leads').find({ [serviceName] : { "$exists" : false } })
+                db.collection('leads').find({ [leadSericeEnrich] : { "$exists" : false } })
                 .toArray(function(err, docs) {
                     if (err) {
                         console.log(err);
@@ -139,33 +140,6 @@ class Dao {
                 });
             }
         });
-        /*
-        MongoClient.connect(url, function (err, db) {
-            if (err) {
-                console.log('Unable to connect to the mongoDB server. Error:', err);
-                callback(err);
-            } else {
-                db.collection('leads').find(
-                    { [serviceName]:
-                        { $exists: true }
-                    },
-                    function (err, result) {
-                        if (err) {
-                            console.log(err);
-                            db.close();
-                            return callback(err);
-                        }
-                        if (result) {
-                            console.log(result);
-                            db.close();
-                            callback(err, result);
-                        }
-                        db.close();
-                    }
-                )
-            }
-        });
-        */
     }
 
 
