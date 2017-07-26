@@ -85,7 +85,7 @@ app.post('/lead-info', function(req, res){
             return res.status(200).send(lead);
         }
     });
-    var mailService = new MailService();
+    //var mailService = new MailService();
     //mailService.sendMail('Subject Test', 'Body Test')
 });
 
@@ -103,7 +103,6 @@ app.post('/update-enriched-lead-information', function(req, res){
             return res.sendStatus(400);
         }
         if (result) {
-            console.log('/update-enriched-lead-information: '+ 200);
             return res.sendStatus(200);
         }
     });
@@ -111,6 +110,19 @@ app.post('/update-enriched-lead-information', function(req, res){
 
 router.get('/update-enriched-lead-information', function(req, res, next) {
     res.sendStatus(200);
+});
+
+router.get('/lead-to-enrich', function(req, res, next) {
+    var dao = new Dao();
+    var enrichService = req.body.enrichService;
+    dao.findLeadsToEnrich(enrichName, function(err, result){
+       if (err) {
+           return res.sendStatus(400);
+       }
+       if (result) {
+           return res.status(200).send(result);
+       }
+    });
 });
 
 
