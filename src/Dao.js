@@ -119,14 +119,14 @@ class Dao {
         });
     }
 
-    findLeadsToEnrich(enrichName, callback) {
+    findLeadsToEnrich(serviceName, callback) {
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
                 callback(err);
             } else {
                 db.collection('leads').find(
-                    { [enrichName]:
+                    { [serviceName]:
                         { $exists: true }
                     },
                     function (err, result) {
@@ -136,6 +136,7 @@ class Dao {
                             return callback(err);
                         }
                         if (result) {
+                            console.log(result);
                             db.close();
                             callback(err, result);
                         }
