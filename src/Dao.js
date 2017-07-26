@@ -36,7 +36,6 @@ class Dao {
     }
 
     findAllLeads(page_number, page_size, callback) {
-        var total_records;
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
@@ -125,6 +124,30 @@ class Dao {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
                 callback(err);
             } else {
+                db.collection('leads').find()
+                    .skip((1-1)*10)
+                    .limit(10)
+                    .sort({"created_at":-1})
+                    .toArray(function(err, docs) {
+                        if (err) {
+                            console.log(err);
+                            db.close();
+                            return callback(err);
+                        }
+                        if (docs) {
+                            db.close();
+                            callback(err, docs);
+                        }
+                        db.close();
+                    });
+            }
+        });
+        /*
+        MongoClient.connect(url, function (err, db) {
+            if (err) {
+                console.log('Unable to connect to the mongoDB server. Error:', err);
+                callback(err);
+            } else {
                 db.collection('leads').find(
                     { [serviceName]:
                         { $exists: true }
@@ -145,6 +168,7 @@ class Dao {
                 )
             }
         });
+        */
     }
 
 
