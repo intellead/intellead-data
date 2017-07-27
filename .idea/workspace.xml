@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4905a6b9-7165-42af-9f45-786ffd5a3b2b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Dao.js" afterPath="$PROJECT_DIR$/src/Dao.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,8 +19,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="114" column="10" lean-forward="true" selection-start-line="114" selection-start-column="10" selection-end-line="114" selection-end-column="33" />
+            <state relative-caret-position="288">
+              <caret line="140" column="8" lean-forward="false" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -51,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/src/Dao.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
-              <caret line="121" column="42" lean-forward="false" selection-start-line="121" selection-start-column="34" selection-end-line="121" selection-end-column="42" />
+              <caret line="160" column="23" lean-forward="false" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -77,7 +76,6 @@
       <find>result</find>
       <find>updateEnrichedLeadInformation</find>
       <find>c</find>
-      <find>console</find>
       <find>console.</find>
       <find>console.l</find>
       <find>console.lo</find>
@@ -98,6 +96,7 @@
       <find>ENRICHED</find>
       <find>mergeEmptyFields</find>
       <find>merge</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -286,15 +285,16 @@
       <workItem from="1500666236481" duration="1558000" />
       <workItem from="1500934335965" duration="10385000" />
       <workItem from="1501098542034" duration="9414000" />
-      <workItem from="1501125736104" duration="2766000" />
+      <workItem from="1501125736104" duration="3461000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126540000" />
+    <option name="totallyTimeSpent" value="127235000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24925596" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -667,15 +667,15 @@
     <entry file="file://$PROJECT_DIR$/src/Dao.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
-          <caret line="121" column="42" lean-forward="false" selection-start-line="121" selection-start-column="34" selection-end-line="121" selection-end-column="42" />
+          <caret line="160" column="23" lean-forward="false" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="114" column="10" lean-forward="true" selection-start-line="114" selection-start-column="10" selection-end-line="114" selection-end-column="33" />
+        <state relative-caret-position="288">
+          <caret line="140" column="8" lean-forward="false" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
           <folding />
         </state>
       </provider>

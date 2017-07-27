@@ -130,7 +130,6 @@ app.post('/update-enrich-attempts', function(req, res){
 
 router.get('/lead-to-enrich', function(req, res, next) {
     var dao = new Dao();
-    console.log(req.body);
     var serviceName = req.body.enrichService;
     dao.findLeadsToEnrich(serviceName, function(error, result) {
        if (error) {
@@ -139,8 +138,6 @@ router.get('/lead-to-enrich', function(req, res, next) {
        if (result) {
            console.log(result.length);
            return res.status(200).send(result);
-       } else {
-           console.log('SEM RESULTADO')
        }
     });
 });
