@@ -124,17 +124,6 @@ router.get('/lead-to-enrich', function(req, res, next) {
            return res.status(200).send(result);
        }
     });
-    /*
-    dao.findLeadsToEnrich(enrichService, function(err, result){
-       if (err) {
-           return res.sendStatus(400);
-       }
-       if (result) {
-           console.log(result);
-           return res.status(200).send(result);
-       }
-    });
-    */
 });
 
 
