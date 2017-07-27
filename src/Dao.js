@@ -4,11 +4,12 @@ var MongoClient = mongodb.MongoClient;
 var url = process.env.MONGODB_URI;
 var _ = require('lodash');
 
-function customizer(objValue, srcValue) {
+function customizerEmptyFields(objValue, srcValue) {
     return _.isUndefined(objValue) || _.isNull(objValue) ? srcValue : objValue;
 }
 
-var merge = _.partialRight(_.assignInWith, customizer);
+var mergeEmptyFields = _.partialRight(_.assignInWith, customizerEmptyFields);
+var merge = _.partialRight(_.assignInWith);
 
 
 class Dao {
@@ -90,7 +91,7 @@ class Dao {
             }
             if (result) {
                 let lead = result.lead;
-                var lead_enriched = merge(lead, rich_information);
+                var lead_enriched = mergeEmptyFields(lead, rich_information);
                 MongoClient.connect(url, function (err, db) {
                     if (err) {
                         console.log('Unable to connect to the mongoDB server. Error:', err);
@@ -99,6 +100,41 @@ class Dao {
                         db.collection('leads').update(
                             {"_id": lead_id},
                             {"lead" : lead_enriched},
+                            function (err, result) {
+                                if (err) {
+                                    console.log(err);
+                                    db.close();
+                                    return callback(err);
+                                }
+                                if (result) {
+                                    db.close();
+                                    callback(err, lead);
+                                }
+                                db.close();
+                            }
+                        );
+                    }
+                });
+            }
+        });
+    }
+
+    updateEnrichAttempts(lead_id, attempts, callback) {
+        new Dao().findLead(lead_id, function (err, result) {
+            if (err) {
+                return res.sendStatus(400);
+            }
+            if (result) {
+                let lead = result.lead;
+                var lead_with_enrich_attempts = merge(lead, attempts);
+                MongoClient.connect(url, function (err, db) {
+                    if (err) {
+                        console.log('Unable to connect to the mongoDB server. Error:', err);
+                        callback(err);
+                    } else {
+                        db.collection('leads').update(
+                            {"_id": lead_id},
+                            {"lead" : lead_with_enrich_attempts},
                             function (err, result) {
                                 if (err) {
                                     console.log(err);

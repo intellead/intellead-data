@@ -112,6 +112,22 @@ router.get('/update-enriched-lead-information', function(req, res, next) {
     res.sendStatus(200);
 });
 
+app.post('/update-enrich-attempts', function(req, res){
+    var lead_id = req.body.lead_id;
+    var attempts = req.body.attempts;
+    var dao = new Dao();
+    dao.updateEnrichAttempts(lead_id, attempts, function (err, result) {
+        if (err) {
+            return res.sendStatus(400);
+        }
+        if (result) {
+            return res.sendStatus(200);
+        }
+    });
+});
+
+
+
 router.get('/lead-to-enrich', function(req, res, next) {
     var dao = new Dao();
     console.log(req.body);
