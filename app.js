@@ -121,6 +121,7 @@ router.get('/lead-to-enrich', function(req, res, next) {
            return res.sendStatus(400);
        }
        if (result) {
+           console.log(result.length);
            return res.status(200).send(result);
        }
     });
