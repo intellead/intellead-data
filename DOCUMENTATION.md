@@ -69,9 +69,9 @@ You must config var <b>MONGODB_URI</b> to persist data.
 <h4>Mail service</h4>
 Some services send email to the application administrator, such as error warnings.
 This service uses the nodemailer library.
-To do this, you must configure the variables:
-ADMINISTRATOR_MAIL - The administrator's email address.
-ADMINISTRATOR_MAIL_PASSWORD - The administrator's email password.
+To do this, you must configure the variables:<br>
+ADMINISTRATOR_MAIL - The administrator's email address.<br>
+ADMINISTRATOR_MAIL_PASSWORD - The administrator's email password.<br>
 ADMINISTRATOR_MAIL_SERVICE - The e-mail service used, eg: gmail, hotmail.
 <h3>Use Cases</h3>
 Some use cases for intellead-data.

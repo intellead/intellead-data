@@ -32,19 +32,19 @@ app.use(function(req, res, next) {
 
 app.use('/', router);
 
-// Route that receives a POST request to rd-webhook/
 app.post('/rd-webhook', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
     var leads = body["leads"];
     var dao = new Dao();
-    var mailService = new MailService();
     for (var index in leads) {
         var lead = leads[index];
         lead._id = lead.id;
         delete lead.id;
         dao.saveAndUpdate(lead, function (err, result) {
             if (err) {
+                var mailService = new MailService();
+                mailService.sendMail('[intellead-data] service [/rd-webhook] is in error ', err);
                 return res.sendStatus(400);
             }
             res.sendStatus(200);
@@ -85,8 +85,6 @@ app.post('/lead-info', function(req, res){
             return res.status(200).send(lead);
         }
     });
-    //var mailService = new MailService();
-    //mailService.sendMail('Subject Test', 'Body Test')
 });
 
 router.get('/lead-info', function(req, res, next) {
@@ -100,6 +98,8 @@ app.post('/update-enriched-lead-information', function(req, res){
     var dao = new Dao();
     dao.updateEnrichedLeadInformation(lead_id, rich_information, function (err, result) {
         if (err) {
+            var mailService = new MailService();
+            mailService.sendMail('[intellead-data] service [/update-enriched-lead-information] is in error ', err);
             return res.sendStatus(400);
         }
         if (result) {
@@ -118,6 +118,8 @@ app.post('/update-enrich-attempts', function(req, res){
     var dao = new Dao();
     dao.updateEnrichAttempts(lead_id, attempts, function (err, result) {
         if (err) {
+            var mailService = new MailService();
+            mailService.sendMail('[intellead-data] service [/update-enrich-attempts] is in error ', err);
             return res.sendStatus(400);
         }
         if (result) {
@@ -133,6 +135,8 @@ router.get('/lead-to-enrich', function(req, res, next) {
     var serviceName = req.body.enrichService;
     dao.findLeadsToEnrich(serviceName, function(error, result) {
        if (error) {
+           var mailService = new MailService();
+           mailService.sendMail('[intellead-data] service [/lead-to-enrich] is in error ', error);
            return res.sendStatus(400);
        }
        if (result) {
