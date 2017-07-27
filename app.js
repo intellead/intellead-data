@@ -123,6 +123,8 @@ router.get('/lead-to-enrich', function(req, res, next) {
        if (result) {
            console.log(result.length);
            return res.status(200).send(result);
+       } else {
+           console.log('SEM RESULTADO')
        }
     });
 });
