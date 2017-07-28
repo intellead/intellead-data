@@ -21,10 +21,12 @@ Intellead Data aims to be an easy way to store and retrieval data of leads for I
   </li>
   <li>Use Cases
     <ul>
-      <li>Receive RDStation data</li>
-      <li>Return data for all leads</li>
-      <li>Return data from a specific lead</li>
-      <li>Update lead data with enrichment</li>
+      <li>Receive data [/rd-webhook]</li>
+      <li>Return data for all leads [/all-leads]</li>
+      <li>Return data from a specific lead [/lead-info]</li>
+      <li>Update lead data with enrichment [/update-enriched-lead-information]</li>
+      <li>Update lead enrichment status [/update-enrich-attempts]</li>
+      <li>Return leads that need to be enriched by a specific service [/lead-to-enrich]</li>
     </ul>
   </li>
   <li>Copyrights and Licence</li>
@@ -37,7 +39,7 @@ This application provides lead registration, lead update and lead retrieval.
 intellead-data is a very smaller component that provide a simple way to receive data, store and retrieval.
 This way you do not need to install any other components for this to work.
 <h4>Dependencies</h4>
-Despite what has been said above, today this application receives data from RDStation through a webhook made available by Digital Results. That way you need to use RDStation and configure a webhook to receive the data.
+Despite what has been said above, today this application receives data from RDStation through a webhook made available by Resultados Digitais. That way you need to use RDStation and configure a webhook to receive the data.
 In the configuration section, we'll talk a bit more about this.
 <h4>Get a copy</h4>
 I like to encourage you to contribute to the repository.<br>
@@ -75,10 +77,12 @@ ADMINISTRATOR_MAIL_PASSWORD - The administrator's email password.<br>
 ADMINISTRATOR_MAIL_SERVICE - The e-mail service used, eg: gmail, hotmail.
 <h3>Use Cases</h3>
 Some use cases for intellead-data.
-<h4>Receive RDStation data</h4>
-RDStation provides a webhook to send us data of the lead.
+<h4>Receive data [/rd-webhook]</h4>
+Currently we receive data from RDStation that provides a webhook to send us data of the lead.
 Once we have configured the webhook in RDStation, the service will be available to receive the data.
-<h4>Return data for all leads</h4>
+The service to receive data is: /rd-webhook
+This service is responsible to receive data, store information from lead in database and call the service of lead enrichment intellead-enrich.
+<h4>Return data for all leads [/all-leads]</h4>
 In some cases, you might need to retrieve all data from all leads.
 As there may be a lot of information, this service proves paginated data. That way you need to inform the number of leads you want and the number of the page.
 We can call the API like this:
@@ -101,7 +105,7 @@ $.ajax({
 })
 ```
 
-<h4>Return data from a specific lead</h4>
+<h4>Return data from a specific lead [/lead-info]</h4>
 Sometimes it’s desirable that retrieve all data from a specific lead.
 You just need to inform the id of the lead.
 We can call API like this:
@@ -123,7 +127,7 @@ $.ajax({
 
 ```
 
-<h4>Update lead data with enrichment</h4>
+<h4>Update lead data with enrichment [/update-enriched-lead-information]</h4>
 When the lead information is enriched, this service proves a way to update the data in the database.
 We can call the API like this:
 
@@ -146,5 +150,56 @@ request.post(
 ```
 
 Used by the intellead-enrich service.
+<h4>Update lead enrichment status [/update-enrich-attempts]</h4>
+This service updates the lead enrichment status. It is used to mark if the enrichment was done (true) and if no, how many attempts were made from enrichment through this service to a lead.
+This mark is very important both to identify whether a lead has already been enriched by a service and to inform whether the self-enrichment schedule will consider that lead in processing.
+Remember that the self enrichment schedule only considers the leads that were not marked as enriched or that the tag identifies a number less than 2 attempts.
+We can call the API like this:
+
+```javascript
+var lead_id = 24234; //id of lead
+var serviceName = "someService"; //name of service of enrichment
+var attempts = 1; //[1, 2, true]
+var qtEnrichmentAttempts = {
+    [serviceName] : attempts
+}
+request.post(
+    'https://your_domain.com/update-enrich-attempts',
+    { json: { lead_id: lead_id, attempts: qtEnrichmentAttempts } },
+    function (error, response, body) {
+        if (error) {
+            console.log(error);
+        }
+    }
+);
+```
+
+<h4>Return leads that need to be enriched by a specific service [/lead-to-enrich]</h4>
+This service is used by the intellead-enrich application's self-enrichment scheduling service.
+It receives as a parameter the name of the enrichment service and searches for all the leads that were not enriched or the number of enrichment attempts is less than 2.
+We can call the API like this:
+
+```javascript
+var enrichment_method = "someService";
+request.get(
+    'https://your_domain.com/lead-to-enrich',
+    { json: { enrichService: enrichment_method } },
+    function (error, response, body) {
+        if (response.statusCode == 200) {
+            var itens = body;
+            //do something
+        }
+        if (error || response.statusCode != 200) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log(response);
+            }
+        }
+    }
+);
+```
+
+
 <h3>Copyrights and Licence</h3>
 TO DO
