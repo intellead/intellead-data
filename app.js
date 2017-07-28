@@ -47,6 +47,7 @@ app.post('/rd-webhook', function (req, res) {
                 mailService.sendMail('[intellead-data] service [/rd-webhook] is in error ', err);
                 return res.sendStatus(400);
             }
+            request.post('https://intellead-enrich.herokuapp.com/lead-enrichment', { json: { item: lead } });
             res.sendStatus(200);
         });
     }
@@ -127,8 +128,6 @@ app.post('/update-enrich-attempts', function(req, res){
         }
     });
 });
-
-
 
 router.get('/lead-to-enrich', function(req, res, next) {
     var dao = new Dao();
