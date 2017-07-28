@@ -47,7 +47,6 @@ app.post('/rd-webhook', function (req, res) {
                 mailService.sendMail('[intellead-data] service [/rd-webhook] is in error ', err);
                 return res.sendStatus(400);
             }
-            console.log("ADICIONOU NA BASE O LEAD: " + lead._id);
             request.post('https://intellead-enrich.herokuapp.com/lead-enrichment', { json: { lead: lead } });
             res.sendStatus(200);
         });
@@ -94,7 +93,6 @@ router.get('/lead-info', function(req, res, next) {
 });
 
 app.post('/update-enriched-lead-information', function(req, res){
-    console.log('/update-enriched-lead-information');
     var lead_id = req.body.lead_id;
     var rich_information = req.body.rich_information;
     var dao = new Dao();
@@ -140,7 +138,6 @@ router.get('/lead-to-enrich', function(req, res, next) {
            return res.sendStatus(400);
        }
        if (result) {
-           console.log(result.length);
            return res.status(200).send(result);
        }
     });
