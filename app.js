@@ -48,7 +48,7 @@ app.post('/rd-webhook', function (req, res) {
                 return res.sendStatus(400);
             }
             console.log("ADICIONOU NA BASE O LEAD: " + lead._id);
-            request.post('https://intellead-enrich.herokuapp.com/lead-enrichment', { json: { item: lead } });
+            request.post('https://intellead-enrich.herokuapp.com/lead-enrichment', { json: { lead: lead } });
             res.sendStatus(200);
         });
     }
