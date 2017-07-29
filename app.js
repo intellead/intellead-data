@@ -56,19 +56,6 @@ router.get('/rd-webhook', function(req, res, next) {
     res.sendStatus(200);
 });
 
-// app.post('/all-leads', function(req, res){
-//     var page_number = parseInt(req.body.page_number),
-//         page_size = parseInt(req.body.page_size);
-//     new Dao().findAllLeads(page_number, page_size, function (err, result) {
-//         if (err) {
-//             return res.sendStatus(400);
-//         }
-//         if (result) {
-//             return res.status(200).send(result);
-//         }
-//     });
-// });
-
 router.post('/all-leads', function(req, res){
     var page_number = parseInt(req.body.page_number),
         page_size = parseInt(req.body.page_size);
@@ -81,10 +68,6 @@ router.post('/all-leads', function(req, res){
         }
     });
 });
-
-// router.get('/all-leads', function(req, res, next) {
-//     res.sendStatus(200);
-// });
 
 app.post('/lead-info', function(req, res){
     var lead_id = req.body.lead_id;
