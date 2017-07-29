@@ -36,12 +36,11 @@ app.post('/rd-webhook', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
     var leads = body["leads"];
-    var dao = new Dao();
     for (var index in leads) {
         var lead = leads[index];
         lead._id = lead.id;
         delete lead.id;
-        dao.saveAndUpdate(lead, function (err, result) {
+        new Dao().saveAndUpdate(lead, function (err, result) {
             if (err) {
                 var mailService = new MailService();
                 mailService.sendMail('[intellead-data] service [/rd-webhook] is in error ', err);
@@ -60,8 +59,7 @@ router.get('/rd-webhook', function(req, res, next) {
 app.post('/all-leads', function(req, res){
     var page_number = parseInt(req.body.page_number),
         page_size = parseInt(req.body.page_size);
-    var dao = new Dao();
-    dao.findAllLeads(page_number, page_size, function (err, result) {
+    new Dao().findAllLeads(page_number, page_size, function (err, result) {
         if (err) {
             return res.sendStatus(400);
         }
@@ -77,8 +75,7 @@ router.get('/all-leads', function(req, res, next) {
 
 app.post('/lead-info', function(req, res){
     var lead_id = req.body.lead_id;
-    var dao = new Dao();
-    dao.findLead(lead_id, function (err, lead) {
+    new Dao().findLead(lead_id, function (err, lead) {
         if (err) {
             return res.sendStatus(400);
         }
@@ -95,8 +92,7 @@ router.get('/lead-info', function(req, res, next) {
 app.post('/update-enriched-lead-information', function(req, res){
     var lead_id = req.body.lead_id;
     var rich_information = req.body.rich_information;
-    var dao = new Dao();
-    dao.updateEnrichedLeadInformation(lead_id, rich_information, function (err, result) {
+    new Dao().updateEnrichedLeadInformation(lead_id, rich_information, function (err, result) {
         if (err) {
             var mailService = new MailService();
             mailService.sendMail('[intellead-data] service [/update-enriched-lead-information] is in error ', err);
@@ -115,8 +111,7 @@ router.get('/update-enriched-lead-information', function(req, res, next) {
 app.post('/update-enrich-attempts', function(req, res){
     var lead_id = req.body.lead_id;
     var attempts = req.body.attempts;
-    var dao = new Dao();
-    dao.updateEnrichAttempts(lead_id, attempts, function (err, result) {
+    new Dao().updateEnrichAttempts(lead_id, attempts, function (err, result) {
         if (err) {
             var mailService = new MailService();
             mailService.sendMail('[intellead-data] service [/update-enrich-attempts] is in error ', err);
@@ -129,9 +124,8 @@ app.post('/update-enrich-attempts', function(req, res){
 });
 
 router.get('/lead-to-enrich', function(req, res, next) {
-    var dao = new Dao();
     var serviceName = req.body.enrichService;
-    dao.findLeadsToEnrich(serviceName, function(error, result) {
+    new Dao().findLeadsToEnrich(serviceName, function(error, result) {
        if (error) {
            var mailService = new MailService();
            mailService.sendMail('[intellead-data] service [/lead-to-enrich] is in error ', error);
