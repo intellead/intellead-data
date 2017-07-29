@@ -27,6 +27,7 @@ Intellead Data aims to be an easy way to store and retrieval data of leads for I
       <li>Update lead data with enrichment [/update-enriched-lead-information]</li>
       <li>Update lead enrichment status [/update-enrich-attempts]</li>
       <li>Return leads that need to be enriched by a specific service [/lead-to-enrich]</li>
+      <li>Save lead status [/save-lead-status]</li>
     </ul>
   </li>
   <li>Copyrights and Licence</li>
@@ -198,6 +199,26 @@ request.get(
         }
     }
 );
+```
+
+<h4>Save lead status [/save-lead-status]</h4>
+This service is used by intellead-classification application.
+After running the classification algorithm it persists this information in the lead through this service.<br>
+The required parameters are the lead id and status.<br>
+Accepted values for status:<br>
+0 for not qualified;<br>
+1 for qualified.<br>
+We can call the API like this:
+
+```python
+headers = {
+    'content-type': 'application/json',
+    'cache-control': 'no-cache',
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.90 Safari/537.36'
+}
+url = 'https://your_domain.com/save-lead-status';
+data = {"lead_id": str(lead_id), "lead_status": int(lead_status)}
+requests.post(url, data=json.dumps(data), json={'lead_id': str(lead_id)}, headers=headers)
 ```
 
 

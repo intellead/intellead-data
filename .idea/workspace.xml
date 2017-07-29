@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4905a6b9-7165-42af-9f45-786ffd5a3b2b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Dao.js" afterPath="$PROJECT_DIR$/src/Dao.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DOCUMENTATION.md" afterPath="$PROJECT_DIR$/DOCUMENTATION.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,14 +20,46 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="151" column="24" lean-forward="false" selection-start-line="151" selection-start-column="8" selection-end-line="151" selection-end-column="24" />
+            <state relative-caret-position="222">
+              <caret line="145" column="27" lean-forward="true" selection-start-line="145" selection-start-column="10" selection-end-line="145" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dao.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DOCUMENTATION.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DOCUMENTATION.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="513">
+                <caret line="213" column="0" lean-forward="true" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
+                <folding>
+                  <marker date="1501309174000" expanded="true" signature="4597:4890" ph="{&quot;url&quot;: &quot;https://your_domain.com/all-leads&quot;...}" />
+                  <marker date="1501309174000" expanded="true" signature="4709:4813" ph="{&quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;...}" />
+                  <marker date="1501309174000" expanded="true" signature="4827:4887" ph="{&quot;page_number&quot;: page...}" />
+                  <marker date="1501309174000" expanded="true" signature="5145:5406" ph="{&quot;url&quot;: &quot;https://your_domain.com/lead-info&quot;...}" />
+                  <marker date="1501309174000" expanded="true" signature="5257:5361" ph="{&quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;...}" />
+                  <marker date="1501309174000" expanded="true" signature="5375:5403" ph="{&quot;lead_id&quot;: id...}" />
+                  <marker date="1501309174000" expanded="true" signature="5760:5867" ph="{...}" />
+                  <marker date="1501309174000" expanded="true" signature="5777:5860" ph="{&quot;lead_id&quot;: id...}" />
+                  <marker date="1501309174000" expanded="true" signature="5906:5976" ph="{...}" />
+                  <marker date="1501309174000" expanded="true" signature="5927:5970" ph="{...}" />
+                  <marker date="1501309174000" expanded="true" signature="6830:6862" ph="{&quot;null&quot;: attemps...}" />
+                  <marker date="1501309174000" expanded="true" signature="7036:7106" ph="{...}" />
+                  <marker date="1501309174000" expanded="true" signature="7057:7100" ph="{...}" />
+                  <marker date="1501309174000" expanded="true" signature="7699:8011" ph="{...}" />
+                  <marker date="1501309174000" expanded="true" signature="7741:7809" ph="{...}" />
+                  <marker date="1501309174000" expanded="true" signature="7859:8005" ph="{...}" />
+                  <marker date="1501309174000" expanded="true" signature="7884:7935" ph="{...}" />
+                  <marker date="1501309174000" expanded="true" signature="7941:7995" ph="{...}" />
+                </folding>
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dao.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Dao.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="218">
@@ -92,9 +123,9 @@
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/MailService.js" />
-        <option value="$PROJECT_DIR$/DOCUMENTATION.md" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/src/Dao.js" />
+        <option value="$PROJECT_DIR$/DOCUMENTATION.md" />
       </list>
     </option>
   </component>
@@ -287,12 +318,12 @@
       <workItem from="1501145393031" duration="448000" />
       <workItem from="1501196496486" duration="1077000" />
       <workItem from="1501199645770" duration="5810000" />
-      <workItem from="1501301124373" duration="762000" />
+      <workItem from="1501301124373" duration="1670000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136879000" />
+    <option name="totallyTimeSpent" value="137787000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -664,11 +695,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Dao.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="195" column="59" lean-forward="false" selection-start-line="195" selection-start-column="59" selection-end-line="195" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="145" column="27" lean-forward="true" selection-start-line="145" selection-start-column="10" selection-end-line="145" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DOCUMENTATION.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="330">
-            <caret line="187" column="12" lean-forward="false" selection-start-line="187" selection-start-column="12" selection-end-line="187" selection-end-column="12" />
+          <first_editor relative-caret-position="513">
+            <caret line="213" column="0" lean-forward="true" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
+            <folding>
+              <marker date="1501309174000" expanded="true" signature="4597:4890" ph="{&quot;url&quot;: &quot;https://your_domain.com/all-leads&quot;...}" />
+              <marker date="1501309174000" expanded="true" signature="4709:4813" ph="{&quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;...}" />
+              <marker date="1501309174000" expanded="true" signature="4827:4887" ph="{&quot;page_number&quot;: page...}" />
+              <marker date="1501309174000" expanded="true" signature="5145:5406" ph="{&quot;url&quot;: &quot;https://your_domain.com/lead-info&quot;...}" />
+              <marker date="1501309174000" expanded="true" signature="5257:5361" ph="{&quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;...}" />
+              <marker date="1501309174000" expanded="true" signature="5375:5403" ph="{&quot;lead_id&quot;: id...}" />
+              <marker date="1501309174000" expanded="true" signature="5760:5867" ph="{...}" />
+              <marker date="1501309174000" expanded="true" signature="5777:5860" ph="{&quot;lead_id&quot;: id...}" />
+              <marker date="1501309174000" expanded="true" signature="5906:5976" ph="{...}" />
+              <marker date="1501309174000" expanded="true" signature="5927:5970" ph="{...}" />
+              <marker date="1501309174000" expanded="true" signature="6830:6862" ph="{&quot;null&quot;: attemps...}" />
+              <marker date="1501309174000" expanded="true" signature="7036:7106" ph="{...}" />
+              <marker date="1501309174000" expanded="true" signature="7057:7100" ph="{...}" />
+              <marker date="1501309174000" expanded="true" signature="7699:8011" ph="{...}" />
+              <marker date="1501309174000" expanded="true" signature="7741:7809" ph="{...}" />
+              <marker date="1501309174000" expanded="true" signature="7859:8005" ph="{...}" />
+              <marker date="1501309174000" expanded="true" signature="7884:7935" ph="{...}" />
+              <marker date="1501309174000" expanded="true" signature="7941:7995" ph="{...}" />
+            </folding>
           </first_editor>
           <second_editor />
         </state>
@@ -676,22 +743,26 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="73" column="69" lean-forward="false" selection-start-line="73" selection-start-column="69" selection-end-line="73" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="151" column="24" lean-forward="false" selection-start-line="151" selection-start-column="8" selection-end-line="151" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dao.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="195" column="59" lean-forward="false" selection-start-line="195" selection-start-column="59" selection-end-line="195" selection-end-column="59" />
-          <folding />
+          <folding>
+            <marker date="1501309174000" expanded="true" signature="4597:4890" ph="{&quot;url&quot;: &quot;https://your_domain.com/all-leads&quot;...}" />
+            <marker date="1501309174000" expanded="true" signature="4709:4813" ph="{&quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;...}" />
+            <marker date="1501309174000" expanded="true" signature="4827:4887" ph="{&quot;page_number&quot;: page...}" />
+            <marker date="1501309174000" expanded="true" signature="5145:5406" ph="{&quot;url&quot;: &quot;https://your_domain.com/lead-info&quot;...}" />
+            <marker date="1501309174000" expanded="true" signature="5257:5361" ph="{&quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;...}" />
+            <marker date="1501309174000" expanded="true" signature="5375:5403" ph="{&quot;lead_id&quot;: id...}" />
+            <marker date="1501309174000" expanded="true" signature="5760:5867" ph="{...}" />
+            <marker date="1501309174000" expanded="true" signature="5777:5860" ph="{&quot;lead_id&quot;: id...}" />
+            <marker date="1501309174000" expanded="true" signature="5906:5976" ph="{...}" />
+            <marker date="1501309174000" expanded="true" signature="5927:5970" ph="{...}" />
+            <marker date="1501309174000" expanded="true" signature="6830:6862" ph="{&quot;null&quot;: attemps...}" />
+            <marker date="1501309174000" expanded="true" signature="7036:7106" ph="{...}" />
+            <marker date="1501309174000" expanded="true" signature="7057:7100" ph="{...}" />
+            <marker date="1501309174000" expanded="true" signature="7699:8011" ph="{...}" />
+            <marker date="1501309174000" expanded="true" signature="7741:7809" ph="{...}" />
+            <marker date="1501309174000" expanded="true" signature="7859:8005" ph="{...}" />
+            <marker date="1501309174000" expanded="true" signature="7884:7935" ph="{...}" />
+            <marker date="1501309174000" expanded="true" signature="7941:7995" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
