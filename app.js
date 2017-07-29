@@ -69,9 +69,9 @@ app.post('/all-leads', function(req, res){
     });
 });
 
-router.get('/all-leads', function(req, res, next) {
-    res.sendStatus(200);
-});
+// router.get('/all-leads', function(req, res, next) {
+//     res.sendStatus(200);
+// });
 
 app.post('/lead-info', function(req, res){
     var lead_id = req.body.lead_id;
