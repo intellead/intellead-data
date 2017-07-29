@@ -81,7 +81,7 @@ router.post('/lead-info', function(req, res){
     });
 });
 
-app.post('/update-enriched-lead-information', function(req, res){
+router.post('/update-enriched-lead-information', function(req, res){
     var lead_id = req.body.lead_id;
     var rich_information = req.body.rich_information;
     new Dao().updateEnrichedLeadInformation(lead_id, rich_information, function (err, result) {
@@ -94,10 +94,6 @@ app.post('/update-enriched-lead-information', function(req, res){
             return res.sendStatus(200);
         }
     });
-});
-
-router.get('/update-enriched-lead-information', function(req, res, next) {
-    res.sendStatus(200);
 });
 
 app.post('/update-enrich-attempts', function(req, res){
