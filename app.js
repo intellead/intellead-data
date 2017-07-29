@@ -69,7 +69,7 @@ router.post('/all-leads', function(req, res){
     });
 });
 
-app.post('/lead-info', function(req, res){
+router.post('/lead-info', function(req, res){
     var lead_id = req.body.lead_id;
     new Dao().findLead(lead_id, function (err, lead) {
         if (err) {
@@ -79,10 +79,6 @@ app.post('/lead-info', function(req, res){
             return res.status(200).send(lead);
         }
     });
-});
-
-router.get('/lead-info', function(req, res, next) {
-    res.sendStatus(200);
 });
 
 app.post('/update-enriched-lead-information', function(req, res){
