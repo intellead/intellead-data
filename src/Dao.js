@@ -122,7 +122,7 @@ class Dao {
     updateEnrichAttempts(lead_id, attempts, callback) {
         new Dao().findLead(lead_id, function (err, result) {
             if (err) {
-                return res.sendStatus(400);
+                return callback(err);
             }
             if (result) {
                 let lead = result.lead;
@@ -173,6 +173,41 @@ class Dao {
                         callback(err, docs);
                     }
                     db.close();
+                });
+            }
+        });
+    }
+
+    saveLeadStatus(lead_id, lead_status, callback) {
+        new Dao().findLead(lead_id, function (err, result) {
+            if (err) {
+                return callback(err);
+            }
+            if (result) {
+                let lead = result.lead;
+                var lead_with_lead_status = merge(lead, lead_status);
+                MongoClient.connect(url, function (err, db) {
+                    if (err) {
+                        console.log('Unable to connect to the mongoDB server. Error:', err);
+                        callback(err);
+                    } else {
+                        db.collection('leads').update(
+                            {"_id": lead_id},
+                            {"lead" : lead_with_lead_status},
+                            function (err, result) {
+                                if (err) {
+                                    console.log(err);
+                                    db.close();
+                                    return callback(err);
+                                }
+                                if (result) {
+                                    db.close();
+                                    callback(err, lead);
+                                }
+                                db.close();
+                            }
+                        );
+                    }
                 });
             }
         });

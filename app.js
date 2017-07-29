@@ -143,6 +143,27 @@ router.get('/lead-to-enrich', function(req, res, next) {
     });
 });
 
+app.post('/save-lead-status', function(req, res){
+    var lead_id = req.body.lead_id;
+    var lead_status = req.body.lead_status;
+    if (!lead_id || !lead_status) {
+        return res.sendStatus(400);
+    }
+    var lead_status_json = {
+        'lead_status' : lead_status
+    };
+    new Dao().saveLeadStatus(lead_id, lead_status_json, function (err, result) {
+        if (err) {
+            var mailService = new MailService();
+            mailService.sendMail('[intellead-data] service [/save-leadh-status] is in error ', err);
+            return res.sendStatus(400);
+        }
+        if (result) {
+            return res.sendStatus(200);
+        }
+    });
+});
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
