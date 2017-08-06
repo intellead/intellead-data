@@ -92,9 +92,16 @@ router.get('/all-qualified-leads-excel', function(req, res){
             return res.sendStatus(400);
         }
         if (result) {
-            var xls = json2xls(result);
+            var json = {
+                foo: 'bar',
+                qux: 'moo',
+                poo: 123,
+                stux: new Date()
+            }
+
+            var xls = json2xls(json);
             fs.writeFileSync('data.xlsx', xls, 'binary');
-            return res.status(200).send(fs);
+            //return res.status(200).send(fs);
         }
     });
 });
