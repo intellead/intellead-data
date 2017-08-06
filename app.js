@@ -12,6 +12,7 @@ var request = require('request');
 var Dao = require('./src/Dao');
 var MailService = require('./src/MailService');
 var fs = require('fs');
+var json2xls = require('json2xls');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
