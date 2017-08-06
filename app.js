@@ -9,9 +9,9 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 var app = express();
 var request = require('request');
-var excelbuilder = require('msexcel-builder');
 var Dao = require('./src/Dao');
 var MailService = require('./src/MailService');
+var fs = require('fs');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -91,29 +91,9 @@ router.get('/all-qualified-leads-excel', function(req, res){
             return res.sendStatus(400);
         }
         if (result) {
-            // Create a new workbook file in current working-path
-            var workbook = excelbuilder.createWorkbook('./', 'qualified_leads.xlsx')
-
-            // Create a new worksheet with 10 columns and 12 rows
-            var sheet1 = workbook.createSheet('sheet1', 10, 12);
-
-            // Fill some data
-            sheet1.set(1, 1, 'I am title');
-            for (var i = 2; i < 5; i++)
-                sheet1.set(i, 1, 'test'+i);
-
-            // Save it
-            workbook.save(function(ok){
-                if (!ok) {
-                    workbook.cancel();
-                } else {
-                    console.log('congratulations, your workbook created');
-                    res.setHeader('Content-Type','application/vnd.openxmlformates');
-                    res.setHeader("Content-Disposition","attachment;filename="+"todo.xlsx");
-                    res.end(workbook,'binary');
-                }
-            });
-            //return res.status(200).send(writeStream);
+            var xls = json2xls(result);
+            fs.writeFileSync('data.xlsx', xls, 'binary');
+            //return res.status(200).send(fs);
         }
     });
 });
