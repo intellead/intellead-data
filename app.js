@@ -96,6 +96,7 @@ router.get('/all-qualified-leads-excel', function(req, res){
     }
     var xls = json2xls(json);
     fs.writeFileSync('data.xlsx', xls, 'binary');
+    return res.status(200).send(fs);
 
     // new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
     //     if (err) {
