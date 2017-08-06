@@ -11,6 +11,7 @@ var app = express();
 var request = require('request');
 var Dao = require('./src/Dao');
 var MailService = require('./src/MailService');
+var fs = require('fs');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -78,6 +79,27 @@ router.post('/all-qualified-leads', function(req, res){
         }
         if (result) {
             return res.status(200).send(result);
+        }
+    });
+});
+
+router.post('/all-qualified-leads-excel', function(req, res){
+    var page_number = 1,
+        page_size = 9999;
+    new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
+        if (err) {
+            return res.sendStatus(400);
+        }
+        if (result) {
+            var writeStream = fs.createWriteStream("file.xls");
+            var header="Sl No"+"\t"+" Age"+"\t"+"Name"+"\n";
+            var row1 = "0"+"\t"+" 21"+"\t"+"Rob"+"\n";
+            var row2 = "1"+"\t"+" 22"+"\t"+"bob"+"\n";
+            writeStream.write(header);
+            writeStream.write(row1);
+            writeStream.write(row2);
+            writeStream.close();
+            return res.status(200).send(writeStream);
         }
     });
 });
