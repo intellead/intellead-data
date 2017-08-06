@@ -69,6 +69,19 @@ router.post('/all-leads', function(req, res){
     });
 });
 
+router.post('/all-qualified-leads', function(req, res){
+    var page_number = parseInt(req.body.page_number),
+        page_size = parseInt(req.body.page_size);
+    new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
+        if (err) {
+            return res.sendStatus(400);
+        }
+        if (result) {
+            return res.status(200).send(result);
+        }
+    });
+});
+
 router.post('/lead-info', function(req, res){
     var lead_id = req.body.lead_id;
     new Dao().findLead(lead_id, function (err, lead) {
