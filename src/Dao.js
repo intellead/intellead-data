@@ -88,6 +88,36 @@ class Dao {
         });
     }
 
+    findAllUnqualifiedLeads(page_number, page_size, callback) {
+        MongoClient.connect(url, function (err, db) {
+            if (err) {
+                console.log('Unable to connect to the mongoDB server. Error:', err);
+                callback(err);
+            } else {
+                db.collection('leads').find(
+                    { $or:[
+                        {'lead.lead_status': 0},
+                        {'lead.lead_status': {"$exists": false}}
+                    ]})
+                    .skip((page_number-1)*page_size)
+                    .limit(page_size)
+                    .sort({"created_at":-1})
+                    .toArray(function(err, docs) {
+                        if (err) {
+                            console.log(err);
+                            db.close();
+                            return callback(err);
+                        }
+                        if (docs) {
+                            db.close();
+                            callback(err, docs);
+                        }
+                        db.close();
+                    });
+            }
+        });
+    }
+
     findLead(id, callback) {
         MongoClient.connect(url, function (err, db) {
             if (err) {
