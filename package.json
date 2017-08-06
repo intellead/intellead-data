@@ -14,6 +14,7 @@
     "mongodb": "^2.2.29",
     "morgan": "~1.8.1",
     "request": "^2.65.0",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "msexcel-builder":"^0.0.2"
   }
 }
