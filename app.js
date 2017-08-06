@@ -94,7 +94,7 @@ router.get('/all-qualified-leads-excel', function(req, res){
         if (result) {
             var xls = json2xls(result);
             fs.writeFileSync('data.xlsx', xls, 'binary');
-            //return res.status(200).send(fs);
+            return res.status(200).send(fs);
         }
     });
 });
