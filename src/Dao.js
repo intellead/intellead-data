@@ -68,7 +68,7 @@ class Dao {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
                 callback(err);
             } else {
-                db.collection('leads').find({'lead_status': 1})
+                db.collection('leads').find({'lead.lead_status': 1})
                     .skip((page_number-1)*page_size)
                     .limit(page_size)
                     .sort({"created_at":-1})
