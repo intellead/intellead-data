@@ -83,7 +83,7 @@ router.post('/all-qualified-leads', function(req, res){
     });
 });
 
-router.post('/all-qualified-leads-excel', function(req, res){
+router.get('/all-qualified-leads-excel', function(req, res){
     var page_number = 1,
         page_size = 9999;
     new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
