@@ -90,39 +90,47 @@ router.get('/all-qualified-leads-excel', function(req, res){
     var page_number = 1,
         page_size = 9999;
 
-    try {
-        var workbook = new excel.Workbook();
-        var worksheet = workbook.addWorksheet('My Sheet');
 
-        worksheet.columns = [
-            { header: 'Id', key: 'id', width: 10 },
-            { header: 'Name', key: 'name', width: 32 },
-            { header: 'D.O.B.', key: 'DOB', width: 10 }
-        ];
-        worksheet.addRow({id: 1, name: 'John Doe', dob: new Date(1970,1,1)});
-        worksheet.addRow({id: 2, name: 'Jane Doe', dob: new Date(1965,1,7)});
-
-        var tempFilePath = tempfile('.xlsx');
-        workbook.xlsx.writeFile(tempFilePath).then(function() {
-            console.log('file is written');
-            res.sendFile(tempFilePath, function(err){
-                console.log('---------- error downloading file: ' + err);
-            });
-        });
-    } catch(err) {
-        console.log('OOOOOOO this is the error: ' + err);
-    }
-    //return res.status(200).send(fs);
-
-    // new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
-    //     if (err) {
-    //         return res.sendStatus(400);
-    //     }
-    //     if (result) {
-    //
-    //         //return res.status(200).send(fs);
-    //     }
-    // });
+    new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
+        if (err) {
+            return res.sendStatus(400);
+        }
+        if (result) {
+            try {
+                var workbook = new excel.Workbook();
+                var worksheet = workbook.addWorksheet('My Sheet');
+                //_id, lead.email, lead.name, lead.company, lead.job_title, lead.personal_phone
+                worksheet.columns = [
+                    { header: 'Id', key: 'id', width: 10 },
+                    { header: 'Name', key: 'name', width: 32 },
+                    { header: 'Job title', key: 'job', width: 10 },
+                    { header: 'Company', key: 'company', width: 10 },
+                    { header: 'Phone', key: 'phone', width: 10 },
+                    { header: 'E-mail', key: 'email', width: 10 }
+                ];
+                for (let index in result) {
+                    worksheet.addRow({
+                        id: result[index]['_id'],
+                        name: result[index]['lead']['name'],
+                        job: result[index]['lead']['job_title'],
+                        company: result[index]['lead']['company'],
+                        phone: result[index]['lead']['personal_phone'],
+                        email: result[index]['lead']['email']
+                    });
+                }
+                //worksheet.addRow({id: 1, name: 'John Doe', dob: new Date(1970,1,1)});
+                var tempFilePath = tempfile('.xlsx');
+                workbook.xlsx.writeFile(tempFilePath).then(function() {
+                    console.log('file is written');
+                    res.sendFile(tempFilePath, function(err){
+                        console.log('---------- error downloading file: ' + err);
+                    });
+                });
+            } catch(err) {
+                console.log('OOOOOOO this is the error: ' + err);
+            }
+        }
+    });
 });
 
 router.post('/all-unqualified-leads', function(req, res){
