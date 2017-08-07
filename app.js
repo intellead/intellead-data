@@ -13,6 +13,8 @@ var Dao = require('./src/Dao');
 var MailService = require('./src/MailService');
 var fs = require('fs');
 var json2xls = require('json2xls');
+var excel = require('exceljs');
+const tempfile = require('tempfile');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -88,15 +90,29 @@ router.get('/all-qualified-leads-excel', function(req, res){
     var page_number = 1,
         page_size = 9999;
 
-    var json = {
-        foo: 'bar',
-        qux: 'moo',
-        poo: 123,
-        stux: new Date()
+    try {
+        var workbook = new excel.Workbook();
+        var worksheet = workbook.addWorksheet('My Sheet');
+
+        worksheet.columns = [
+            { header: 'Id', key: 'id', width: 10 },
+            { header: 'Name', key: 'name', width: 32 },
+            { header: 'D.O.B.', key: 'DOB', width: 10 }
+        ];
+        worksheet.addRow({id: 1, name: 'John Doe', dob: new Date(1970,1,1)});
+        worksheet.addRow({id: 2, name: 'Jane Doe', dob: new Date(1965,1,7)});
+
+        var tempFilePath = tempfile('.xlsx');
+        workbook.xlsx.writeFile(tempFilePath).then(function() {
+            console.log('file is written');
+            res.sendFile(tempFilePath, function(err){
+                console.log('---------- error downloading file: ' + err);
+            });
+        });
+    } catch(err) {
+        console.log('OOOOOOO this is the error: ' + err);
     }
-    var xls = json2xls(json);
-    fs.writeFileSync('data.xlsx', xls, 'binary');
-    return res.status(200).send(fs);
+    //return res.status(200).send(fs);
 
     // new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
     //     if (err) {
