@@ -22,7 +22,10 @@ Intellead Data aims to be an easy way to store and retrieval data of leads for I
   <li>Use Cases
     <ul>
       <li>Receive data [/rd-webhook]</li>
-      <li>Return data for all leads [/all-leads]</li>
+      <li>Return data from all leads [/all-leads]</li>
+      <li>Return data from all qualified leads [/all-qualified-leads]</li>
+      <li>Return data from all unqualified leads [/all-unqualified-leads]</li>
+      <li>Export data from all qualified leads [/all-qualified-leads-excel]</li>
       <li>Return data from a specific lead [/lead-info]</li>
       <li>Update lead data with enrichment [/update-enriched-lead-information]</li>
       <li>Update lead enrichment status [/update-enrich-attempts]</li>
@@ -83,7 +86,7 @@ Currently we receive data from RDStation that provides a webhook to send us data
 Once we have configured the webhook in RDStation, the service will be available to receive the data.
 The service to receive data is: /rd-webhook
 This service is responsible to receive data, store information from lead in database and call the service of lead enrichment intellead-enrich.
-<h4>Return data for all leads [/all-leads]</h4>
+<h4>Return data from all leads [/all-leads]</h4>
 In some cases, you might need to retrieve all data from all leads.
 As there may be a lot of information, this service proves paginated data. That way you need to inform the number of leads you want and the number of the page.
 We can call the API like this:
@@ -105,6 +108,74 @@ $.ajax({
     },
 })
 ```
+
+This service is used by intellead-webapp.
+<h4>Return data from all qualified leads [/all-qualified-leads]</h4>
+In some cases, you might need to retrieve all data from all qualified leads.
+As there may be a lot of information, this service proves paginated data. That way you need to inform the number of leads you want and the number of the page.
+We can call the API like this:
+
+```javascript
+var page = $('#page_number').val();
+var size = $('#page_size').val();
+$.ajax({
+    "crossDomain": true,
+    "url": "https://your_domain.com/all-qualified-leads",
+    "method": "POST",
+    "headers": {
+        "content-type": "application/x-www-form-urlencoded",
+        "cache-control": "no-cache"
+    },
+    "data": {
+        page_number : page,
+        page_size : size
+    },
+})
+```
+
+This service is used by intellead-webapp.
+<h4>Return data from all unqualified leads [/all-unqualified-leads]</h4>
+In some cases, you might need to retrieve all data from all unqualified leads.
+As there may be a lot of information, this service proves paginated data. That way you need to inform the number of leads you want and the number of the page.
+We can call the API like this:
+
+```javascript
+var page = $('#page_number').val();
+var size = $('#page_size').val();
+$.ajax({
+    "crossDomain": true,
+    "url": "https://your_domain.com/all-unqualified-leads",
+    "method": "POST",
+    "headers": {
+        "content-type": "application/x-www-form-urlencoded",
+        "cache-control": "no-cache"
+    },
+    "data": {
+        page_number : page,
+        page_size : size
+    },
+})
+```
+
+This service is used by intellead-webapp.
+<h4>Export data from all qualified leads [/all-qualified-leads-excel]</h4>
+This service aims to be one way to export information from all qualified leads.
+We can call the API like this:
+
+```javascript
+$.ajax({
+  "crossDomain": true,
+  "url": "https://your_domain.com/all-qualified-leads-excel",
+  "method": "GET",
+  "headers": {
+      "content-type": "application/x-www-form-urlencoded",
+      "cache-control": "no-cache"
+  },
+})
+```
+
+This service returns a .xlsx document with the following informations:<br>
+id, name, job title, company, phone, email.
 
 <h4>Return data from a specific lead [/lead-info]</h4>
 Sometimes it’s desirable that retrieve all data from a specific lead.

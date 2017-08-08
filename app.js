@@ -89,8 +89,6 @@ router.post('/all-qualified-leads', function(req, res){
 router.get('/all-qualified-leads-excel', function(req, res){
     var page_number = 1,
         page_size = 9999;
-
-
     new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
         if (err) {
             return res.sendStatus(400);
@@ -99,7 +97,6 @@ router.get('/all-qualified-leads-excel', function(req, res){
             try {
                 var workbook = new excel.Workbook();
                 var worksheet = workbook.addWorksheet('My Sheet');
-                //_id, lead.email, lead.name, lead.company, lead.job_title, lead.personal_phone
                 worksheet.columns = [
                     { header: 'Id', key: 'id', width: 10 },
                     { header: 'Name', key: 'name', width: 32 },
@@ -118,7 +115,6 @@ router.get('/all-qualified-leads-excel', function(req, res){
                         email: result[index]['lead']['email']
                     });
                 }
-                //worksheet.addRow({id: 1, name: 'John Doe', dob: new Date(1970,1,1)});
                 var tempFilePath = tempfile('.xlsx');
                 workbook.xlsx.writeFile(tempFilePath).then(function() {
                     console.log('file is written');
