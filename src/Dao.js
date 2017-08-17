@@ -132,7 +132,7 @@ class Dao {
                     }
                     if (lead) {
                         db.close();
-                        callback(err, lead);
+                        return callback(err, lead);
                     }
                     db.close();
                 });
@@ -164,7 +164,7 @@ class Dao {
                                 }
                                 if (result) {
                                     db.close();
-                                    callback(err, lead);
+                                    return callback(err, lead);
                                 }
                                 db.close();
                             }
@@ -176,7 +176,6 @@ class Dao {
     }
 
     updateEnrichAttempts(lead_id, attempts, callback) {
-        console.log('[DAO] updateEnrichAttempts');
         new Dao().findLead(lead_id, function (err, result) {
             if (err) {
                 return callback(err);
@@ -187,7 +186,7 @@ class Dao {
                 MongoClient.connect(url, function (err, db) {
                     if (err) {
                         console.log('Unable to connect to the mongoDB server. Error:', err);
-                        callback(err);
+                        return callback(err);
                     } else {
                         db.collection('leads').update(
                             {"_id": lead_id},
@@ -200,7 +199,7 @@ class Dao {
                                 }
                                 if (result) {
                                     db.close();
-                                    callback(err, lead);
+                                    return callback(err, lead);
                                 }
                                 db.close();
                             }
@@ -216,7 +215,7 @@ class Dao {
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
-                callback(err);
+                return callback(err);
             } else {
                 db.collection('leads').find({ $or:[ { [leadSericeEnrich]: {"$exists": false} }, { [leadSericeEnrich]: { $lt: 2} } ] })
                 .toArray(function(err, docs) {
@@ -227,7 +226,7 @@ class Dao {
                     }
                     if (docs) {
                         db.close();
-                        callback(err, docs);
+                        return callback(err, docs);
                     }
                     db.close();
                 });
@@ -246,7 +245,7 @@ class Dao {
                 MongoClient.connect(url, function (err, db) {
                     if (err) {
                         console.log('Unable to connect to the mongoDB server. Error:', err);
-                        callback(err);
+                        return callback(err);
                     } else {
                         db.collection('leads').update(
                             {"_id": lead_id},
@@ -259,7 +258,7 @@ class Dao {
                                 }
                                 if (result) {
                                     db.close();
-                                    callback(err, lead);
+                                    return callback(err, lead);
                                 }
                                 db.close();
                             }

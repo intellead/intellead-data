@@ -163,7 +163,7 @@ app.post('/update-enrich-attempts', function(req, res){
     var lead_id = req.body.lead_id;
     console.log('lead_id: ' + lead_id);
     var attempts = req.body.attempts;
-    console.log('attempts: ' + attempts);
+    console.log('attempts: ' + JSON.stringify(attempts));
     new Dao().updateEnrichAttempts(lead_id, attempts, function (err, result) {
         if (err) {
             var mailService = new MailService();
