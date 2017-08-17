@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4905a6b9-7165-42af-9f45-786ffd5a3b2b" name="Default" comment="" />
+    <list default="true" id="4905a6b9-7165-42af-9f45-786ffd5a3b2b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Dao.js" afterPath="$PROJECT_DIR$/src/Dao.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -14,63 +17,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="132">
+              <caret line="148" column="84" lean-forward="false" selection-start-line="148" selection-start-column="81" selection-end-line="148" selection-end-column="84" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DOCUMENTATION.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DOCUMENTATION.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SECOND">
-              <first_editor relative-caret-position="2520">
-                <caret line="168" column="16" lean-forward="false" selection-start-line="168" selection-start-column="16" selection-end-line="168" selection-end-column="16" />
-                <folding>
-                  <marker date="1502159515000" expanded="true" signature="4834:5127" ph="{&quot;url&quot;: &quot;https://your_domain.com/all-leads&quot;...}" />
-                  <marker date="1502159515000" expanded="true" signature="4946:5050" ph="{&quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;...}" />
-                  <marker date="1502159515000" expanded="true" signature="5064:5124" ph="{&quot;page_number&quot;: page...}" />
-                  <marker date="1502159515000" expanded="true" signature="5604:5907" ph="{&quot;url&quot;: &quot;https://your_domain.com/all-qualified-leads&quot;...}" />
-                  <marker date="1502159515000" expanded="true" signature="5726:5830" ph="{&quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;...}" />
-                  <marker date="1502159515000" expanded="true" signature="5844:5904" ph="{&quot;page_number&quot;: page...}" />
-                  <marker date="1502159515000" expanded="true" signature="6390:6695" ph="{&quot;url&quot;: &quot;https://your_domain.com/all-unqualified-leads&quot;...}" />
-                  <marker date="1502159515000" expanded="true" signature="6514:6618" ph="{&quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;...}" />
-                  <marker date="1502159515000" expanded="true" signature="6632:6692" ph="{&quot;page_number&quot;: page...}" />
-                  <marker date="1502159515000" expanded="true" signature="6952:7171" ph="{&quot;url&quot;: &quot;https://your_domain.com/all-qualified-leads-excel&quot;...}" />
-                  <marker date="1502159515000" expanded="true" signature="6952:7172" ph="{&quot;url&quot;: &quot;https://your_domain.com/all-unqualified-leads&quot;...}" />
-                  <marker date="1502159515000" expanded="true" signature="7071:7169" ph="{&quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;...}" />
-                  <marker date="1502159515000" expanded="true" signature="7547:7808" ph="{&quot;url&quot;: &quot;https://your_domain.com/lead-info&quot;...}" />
-                  <marker date="1502159515000" expanded="true" signature="7659:7763" ph="{&quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;...}" />
-                  <marker date="1502159515000" expanded="true" signature="7777:7805" ph="{&quot;lead_id&quot;: id...}" />
-                  <marker date="1502159515000" expanded="true" signature="8162:8269" ph="{...}" />
-                  <marker date="1502159515000" expanded="true" signature="8179:8262" ph="{&quot;lead_id&quot;: id...}" />
-                  <marker date="1502159515000" expanded="true" signature="8308:8378" ph="{...}" />
-                  <marker date="1502159515000" expanded="true" signature="8329:8372" ph="{...}" />
-                  <marker date="1502159515000" expanded="true" signature="9232:9264" ph="{&quot;null&quot;: attemps...}" />
-                  <marker date="1502159515000" expanded="true" signature="9438:9508" ph="{...}" />
-                  <marker date="1502159515000" expanded="true" signature="9459:9502" ph="{...}" />
-                  <marker date="1502159515000" expanded="true" signature="10101:10413" ph="{...}" />
-                  <marker date="1502159515000" expanded="true" signature="10143:10211" ph="{...}" />
-                  <marker date="1502159515000" expanded="true" signature="10261:10407" ph="{...}" />
-                  <marker date="1502159515000" expanded="true" signature="10286:10337" ph="{...}" />
-                  <marker date="1502159515000" expanded="true" signature="10343:10397" ph="{...}" />
-                  <marker date="1502159515000" expanded="true" signature="10826:11027" ph="{&quot;content-type&quot;: 'application/json'...}" />
-                </folding>
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Dao.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Dao.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Dao.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="155" column="48" lean-forward="false" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
+            <state relative-caret-position="106">
+              <caret line="148" column="15" lean-forward="true" selection-start-line="148" selection-start-column="15" selection-end-line="148" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -135,8 +96,8 @@
       <find>console.log</find>
       <find>lead-enrichment</find>
       <find>lead-enrichment-by-id</find>
-      <find>tempfile</find>
       <find>router</find>
+      <find>tempfile</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -149,10 +110,10 @@
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/src/MailService.js" />
-        <option value="$PROJECT_DIR$/src/Dao.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/DOCUMENTATION.md" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/src/Dao.js" />
       </list>
     </option>
   </component>
@@ -201,6 +162,17 @@
             <path>
               <item name="intellead-data" type="b2602c69:ProjectViewProjectNode" />
               <item name="intellead-data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="intellead-data" type="b2602c69:ProjectViewProjectNode" />
+              <item name="intellead-data" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="intellead-data" type="b2602c69:ProjectViewProjectNode" />
+              <item name="intellead-data" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="intellead-data" type="b2602c69:ProjectViewProjectNode" />
@@ -363,15 +335,16 @@
       <workItem from="1502154250358" duration="1576000" />
       <workItem from="1502730749589" duration="22000" />
       <workItem from="1502830359686" duration="2592000" />
-      <workItem from="1502932637359" duration="1498000" />
+      <workItem from="1502932637359" duration="2560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156445000" />
+    <option name="totallyTimeSpent" value="157507000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24876674" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -380,7 +353,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2140266" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2140266" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -818,18 +791,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Dao.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="155" column="48" lean-forward="false" selection-start-line="155" selection-start-column="48" selection-end-line="155" selection-end-column="48" />
+        <state relative-caret-position="132">
+          <caret line="148" column="84" lean-forward="false" selection-start-line="148" selection-start-column="81" selection-end-line="148" selection-end-column="84" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/src/Dao.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="106">
+          <caret line="148" column="15" lean-forward="true" selection-start-line="148" selection-start-column="15" selection-end-line="148" selection-end-column="15" />
           <folding />
         </state>
       </provider>

@@ -143,7 +143,7 @@ class Dao {
     updateEnrichedLeadInformation(lead_id, rich_information, callback) {
         new Dao().findLead(lead_id, function (err, result) {
             if (err) {
-                return res.sendStatus(400);
+                return callback(err);
             }
             if (result) {
                 let lead = result.lead;
