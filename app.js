@@ -173,7 +173,7 @@ app.post('/update-enrich-attempts', function(req, res){
     });
 });
 
-app.get('/lead-to-enrich', function(req, res, next) {
+app.get('/lead-to-enrich', function(req, res) {
     var serviceName = req.body.enrichService;
     new Dao().findLeadsToEnrich(serviceName, function(error, result) {
        if (error) {
