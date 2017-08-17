@@ -6,7 +6,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var router = express.Router();
 var app = express();
 var request = require('request');
 var Dao = require('./src/Dao');
@@ -34,8 +33,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use('/', router);
-
 app.post('/rd-webhook', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
@@ -56,11 +53,7 @@ app.post('/rd-webhook', function (req, res) {
     }
 });
 
-router.get('/rd-webhook', function(req, res, next) {
-    res.sendStatus(200);
-});
-
-router.post('/all-leads', function(req, res){
+app.post('/all-leads', function(req, res){
     var page_number = parseInt(req.body.page_number),
         page_size = parseInt(req.body.page_size);
     new Dao().findAllLeads(page_number, page_size, function (err, result) {
@@ -73,7 +66,7 @@ router.post('/all-leads', function(req, res){
     });
 });
 
-router.post('/all-qualified-leads', function(req, res){
+app.post('/all-qualified-leads', function(req, res){
     var page_number = parseInt(req.body.page_number),
         page_size = parseInt(req.body.page_size);
     new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
@@ -86,7 +79,7 @@ router.post('/all-qualified-leads', function(req, res){
     });
 });
 
-router.get('/all-qualified-leads-excel', function(req, res){
+app.get('/all-qualified-leads-excel', function(req, res){
     var page_number = 1,
         page_size = 9999;
     new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
@@ -129,7 +122,7 @@ router.get('/all-qualified-leads-excel', function(req, res){
     });
 });
 
-router.post('/all-unqualified-leads', function(req, res){
+app.post('/all-unqualified-leads', function(req, res){
     var page_number = parseInt(req.body.page_number),
         page_size = parseInt(req.body.page_size);
     new Dao().findAllUnqualifiedLeads(page_number, page_size, function (err, result) {
@@ -142,7 +135,7 @@ router.post('/all-unqualified-leads', function(req, res){
     });
 });
 
-router.post('/lead-info', function(req, res){
+app.post('/lead-info', function(req, res){
     var lead_id = req.body.lead_id;
     new Dao().findLead(lead_id, function (err, lead) {
         if (err) {
@@ -154,7 +147,7 @@ router.post('/lead-info', function(req, res){
     });
 });
 
-router.post('/update-enriched-lead-information', function(req, res){
+app.post('/update-enriched-lead-information', function(req, res){
     var lead_id = req.body.lead_id;
     var rich_information = req.body.rich_information;
     new Dao().updateEnrichedLeadInformation(lead_id, rich_information, function (err, result) {
@@ -184,7 +177,7 @@ app.post('/update-enrich-attempts', function(req, res){
     });
 });
 
-router.get('/lead-to-enrich', function(req, res, next) {
+app.get('/lead-to-enrich', function(req, res, next) {
     var serviceName = req.body.enrichService;
     new Dao().findLeadsToEnrich(serviceName, function(error, result) {
        if (error) {
