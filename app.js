@@ -159,8 +159,11 @@ app.post('/update-enriched-lead-information', function(req, res){
 });
 
 app.post('/update-enrich-attempts', function(req, res){
+    console.log('/update-enrich-attempts');
     var lead_id = req.body.lead_id;
+    console.log('lead_id: ' + lead_id);
     var attempts = req.body.attempts;
+    console.log('attempts: ' + attempts);
     new Dao().updateEnrichAttempts(lead_id, attempts, function (err, result) {
         if (err) {
             var mailService = new MailService();

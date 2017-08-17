@@ -176,6 +176,7 @@ class Dao {
     }
 
     updateEnrichAttempts(lead_id, attempts, callback) {
+        console.log('[DAO] updateEnrichAttempts');
         new Dao().findLead(lead_id, function (err, result) {
             if (err) {
                 return callback(err);
