@@ -197,7 +197,8 @@ app.post('/save-lead-status', function(req, res){
         return res.sendStatus(400);
     }
     var lead_status_json = {
-        'lead_status' : lead_status
+        'lead_status' : lead_status['value'],
+        'lead_status_proba' : lead_status['proba']
     };
     new Dao().saveLeadStatus(lead_id, lead_status_json, function (err, result) {
         if (err) {
