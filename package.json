@@ -11,10 +11,12 @@
     "debug": "~2.6.3",
     "ejs": "~2.5.6",
     "express": "~4.15.2",
+    "json2xls": "^0.1.2",
     "mongodb": "^2.2.29",
     "morgan": "~1.8.1",
+    "msexcel-builder": "^0.0.2",
+    "nodemailer": "^4.1.1",
     "request": "^2.65.0",
-    "serve-favicon": "~2.4.2",
-    "msexcel-builder":"^0.0.2"
+    "serve-favicon": "~2.4.2"
   }
 }
