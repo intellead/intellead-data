@@ -43,7 +43,7 @@ app.post('/rd-webhook', function (req, res) {
                 mailService.sendMail('[intellead-data] service [/rd-webhook] is in error ', err);
                 return res.sendStatus(400);
             }
-            request.post('https://intellead-enrich.herokuapp.com/lead-enrichment', { json: { lead: lead } });
+            request.post(process.env.ENRICH_LEAD_ENRICHMENT_URL, { json: { lead: lead } });
             res.sendStatus(200);
         });
     }
