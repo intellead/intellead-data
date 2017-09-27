@@ -59,7 +59,12 @@ This should be as easy as possible for you but there are few things to consider 
   <li>Even if you have write access to the repository, do not directly push or merge pull-requests. Let another team member review your pull request and approve.</li>
 </ul>
 <h3>Configuration</h3>
-Once the application is installed (check Installation) define the following settings to enable the application behavior. 
+Once the application is installed (check Installation) define the following settings to enable the application behavior.
+<h4>Config vars</h4>
+The application uses other intellead services.<br>
+For this it is necessary to configure the URL variables.<br>
+You must config the following vars:<br>
+ENRICH_LEAD_ENRICHMENT_URL - Full URL of Lead Enrichment API from Enrich Service;<br> 
 <h4>Receiving data</h4>
 Today the application receives the RDStation data through a webhook.
 The first configuration to do is to create the webhook through the RDStation Integrations menu.
