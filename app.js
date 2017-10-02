@@ -14,6 +14,7 @@ var fs = require('fs');
 var json2xls = require('json2xls');
 var excel = require('exceljs');
 const tempfile = require('tempfile');
+var enrichLeadEnrichmentUrl = process.env.ENRICH_LEAD_ENRICHMENT_URL || 'http://intellead-enrich/lead-enrichment';
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -33,6 +34,7 @@ app.post('/rd-webhook', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
     var leads = body["leads"];
+    if (!leads) return res.sendStatus(400);
     for (var index in leads) {
         var lead = leads[index];
         lead._id = lead.id;
@@ -43,7 +45,7 @@ app.post('/rd-webhook', function (req, res) {
                 mailService.sendMail('[intellead-data] service [/rd-webhook] is in error ', err);
                 return res.sendStatus(400);
             }
-            request.post(process.env.ENRICH_LEAD_ENRICHMENT_URL, { json: { lead: lead } });
+            request.post(enrichLeadEnrichmentUrl, { json: { lead: lead } });
             res.sendStatus(200);
         });
     }
