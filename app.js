@@ -14,7 +14,7 @@ var fs = require('fs');
 var json2xls = require('json2xls');
 var excel = require('exceljs');
 const tempfile = require('tempfile');
-var enrichLeadEnrichmentUrl = process.env.ENRICH_LEAD_ENRICHMENT_URL || 'http://intellead-enrich/lead-enrichment';
+var enrichLeadEnrichmentUrl = process.env.ENRICH_LEAD_ENRICHMENT_URL || 'http://intellead-enrich:3000/lead-enrichment';
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -34,7 +34,7 @@ app.post('/rd-webhook', function (req, res) {
     var body = req.body;
     if (!body) return res.sendStatus(400);
     var leads = body["leads"];
-    if (!leads) return res.sendStatus(400);
+    if (!leads) return res.sendStatus(412);
     for (var index in leads) {
         var lead = leads[index];
         lead._id = lead.id;
