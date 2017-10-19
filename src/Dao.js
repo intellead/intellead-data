@@ -172,8 +172,9 @@ class Dao {
                         );
                     }
                 });
+            } else {
+                return callback();
             }
-            return callback();
         });
     }
 
@@ -208,6 +209,8 @@ class Dao {
                         );
                     }
                 });
+            } else {
+                return callback();
             }
         });
     }
