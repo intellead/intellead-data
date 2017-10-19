@@ -32,7 +32,6 @@ app.use(function(req, res, next) {
 
 app.post('/rd-webhook', function (req, res) {
     var body = req.body;
-    console.log(body);
     if (!body) return res.sendStatus(400);
     var leads = body["leads"];
     if (!leads) return res.sendStatus(412);
