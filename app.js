@@ -176,6 +176,7 @@ app.post('/update-enrich-attempts', function(req, res){
         if (result) {
             return res.sendStatus(200);
         }
+        return res.sendStatus(204);
     });
 });
 
