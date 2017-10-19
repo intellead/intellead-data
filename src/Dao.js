@@ -135,6 +135,7 @@ class Dao {
                         return callback(err, lead);
                     }
                     db.close();
+                    return callback();
                 });
             }
         });
@@ -150,7 +151,6 @@ class Dao {
                 var lead_enriched = mergeEmptyFields(lead, rich_information);
                 MongoClient.connect(url, function (err, db) {
                     if (err) {
-                        console.log('Unable to connect to the mongoDB server. Error:', err);
                         callback(err);
                     } else {
                         db.collection('leads').update(
@@ -158,7 +158,6 @@ class Dao {
                             {"lead" : lead_enriched},
                             function (err, result) {
                                 if (err) {
-                                    console.log(err);
                                     db.close();
                                     return callback(err);
                                 }
@@ -172,6 +171,7 @@ class Dao {
                     }
                 });
             }
+            return callback();
         });
     }
 
