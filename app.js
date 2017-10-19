@@ -142,6 +142,7 @@ app.post('/lead-info', function(req, res){
         if (lead) {
             return res.status(200).send(lead);
         }
+        return res.sendStatus(204);
     });
 });
 
