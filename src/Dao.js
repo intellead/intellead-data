@@ -135,6 +135,7 @@ class Dao {
                         return callback(err, lead);
                     }
                     db.close();
+                    return callback();
                 });
             }
         });
@@ -171,6 +172,8 @@ class Dao {
                         );
                     }
                 });
+            } else {
+                return callback();
             }
         });
     }
@@ -206,6 +209,8 @@ class Dao {
                         );
                     }
                 });
+            } else {
+                return callback();
             }
         });
     }
