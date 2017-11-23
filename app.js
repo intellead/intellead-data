@@ -53,9 +53,7 @@ app.post('/rd-webhook', function (req, res) {
     var token = req.header('token');
     request({ url: securityUrl + '/' + token}, function(error, response, authBody) {
         if (response.statusCode != 200) return res.sendStatus(403);
-        var body = req.body;
-        if (!body) return res.sendStatus(400);
-        var leads = body["leads"];
+        var leads = req.body["leads"];
         if (!leads) return res.sendStatus(412);
         for (var index in leads) {
             var lead = leads[index];
