@@ -176,7 +176,6 @@ app.post('/lead-info', function(req, res){
 });
 
 app.post('/update-enriched-lead-information', function(req, res){
-    console.log('#####' + req.header('token'));
     request({ url: securityUrl + '/' + req.header('token')}, function(error, response, authBody) {
         if (response.statusCode != 200) return res.sendStatus(403);
         var lead_id = req.body.lead_id;
