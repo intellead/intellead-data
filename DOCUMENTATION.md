@@ -299,4 +299,5 @@ requests.post(url, data=json.dumps(data), json={'lead_id': str(lead_id)}, header
 
 
 <h3>Copyrights and Licence</h3>
+Project copyright and license is available at <a href="https://github.com/intellead/intellead-data/blob/master/LICENSE">LICENSE</a>.
 TO DO
