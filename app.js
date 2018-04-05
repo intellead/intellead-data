@@ -28,10 +28,6 @@ var app = express();
 var request = require('request');
 var Dao = require('./src/Dao');
 var MailService = require('./src/MailService');
-var fs = require('fs');
-var json2xls = require('json2xls');
-var excel = require('exceljs');
-const tempfile = require('tempfile');
 var enrichLeadEnrichmentUrl = process.env.ENRICH_LEAD_ENRICHMENT_URL || 'http://intellead-enrich:3000/lead-enrichment';
 var securityUrl = process.env.SECURITY_URL || 'http://intellead-security:8080/auth';
 
@@ -73,88 +69,6 @@ app.post('/rd-webhook', function (req, res) {
                 });
                 res.sendStatus(200);
             });
-        }
-    });
-});
-
-app.post('/all-leads', function(req, res){
-    var page_number = parseInt(req.body.page_number),
-        page_size = parseInt(req.body.page_size);
-    new Dao().findAllLeads(page_number, page_size, function (err, result) {
-        if (err) {
-            return res.sendStatus(400);
-        }
-        if (result) {
-            return res.status(200).send(result);
-        }
-    });
-});
-
-app.post('/all-qualified-leads', function(req, res){
-    var page_number = parseInt(req.body.page_number),
-        page_size = parseInt(req.body.page_size);
-    new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
-        if (err) {
-            return res.sendStatus(400);
-        }
-        if (result) {
-            return res.status(200).send(result);
-        }
-    });
-});
-
-app.get('/all-qualified-leads-excel', function(req, res){
-    var page_number = 1,
-        page_size = 9999;
-    new Dao().findAllQualifiedLeads(page_number, page_size, function (err, result) {
-        if (err) {
-            return res.sendStatus(400);
-        }
-        if (result) {
-            try {
-                var workbook = new excel.Workbook();
-                var worksheet = workbook.addWorksheet('My Sheet');
-                worksheet.columns = [
-                    { header: 'Id', key: 'id', width: 10 },
-                    { header: 'Name', key: 'name', width: 32 },
-                    { header: 'Job title', key: 'job', width: 10 },
-                    { header: 'Company', key: 'company', width: 10 },
-                    { header: 'Phone', key: 'phone', width: 10 },
-                    { header: 'E-mail', key: 'email', width: 10 }
-                ];
-                for (let index in result) {
-                    worksheet.addRow({
-                        id: result[index]['_id'],
-                        name: result[index]['lead']['name'],
-                        job: result[index]['lead']['job_title'],
-                        company: result[index]['lead']['company'],
-                        phone: result[index]['lead']['personal_phone'],
-                        email: result[index]['lead']['email']
-                    });
-                }
-                var tempFilePath = tempfile('.xlsx');
-                workbook.xlsx.writeFile(tempFilePath).then(function() {
-                    console.log('file is written');
-                    res.sendFile(tempFilePath, function(err){
-                        console.log('---------- error downloading file: ' + err);
-                    });
-                });
-            } catch(err) {
-                console.log('OOOOOOO this is the error: ' + err);
-            }
-        }
-    });
-});
-
-app.post('/all-unqualified-leads', function(req, res){
-    var page_number = parseInt(req.body.page_number),
-        page_size = parseInt(req.body.page_size);
-    new Dao().findAllUnqualifiedLeads(page_number, page_size, function (err, result) {
-        if (err) {
-            return res.sendStatus(400);
-        }
-        if (result) {
-            return res.status(200).send(result);
         }
     });
 });
@@ -213,20 +127,6 @@ app.post('/update-enrich-attempts', function(req, res){
             }
             return res.sendStatus(204);
         });
-    });
-});
-
-app.get('/lead-to-enrich', function(req, res) {
-    var serviceName = req.body.enrichService;
-    new Dao().findLeadsToEnrich(serviceName, function(error, result) {
-       if (error) {
-           var mailService = new MailService();
-           mailService.sendMail('[intellead-data] service [/lead-to-enrich] is in error ', error);
-           return res.sendStatus(400);
-       }
-       if (result) {
-           return res.status(200).send(result);
-       }
     });
 });
 
