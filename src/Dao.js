@@ -160,6 +160,29 @@ class Dao {
         });
     }
 
+    findLeadByEmail(email, callback) {
+        MongoClient.connect(url, function (err, db) {
+            if (err) {
+                console.log('Unable to connect to the mongoDB server. Error:', err);
+                callback(err);
+            } else {
+                db.collection('leads').findOne({"lead.email" : email}, function(err, lead) {
+                    if (err) {
+                        console.log(err);
+                        db.close();
+                        return callback(err);
+                    }
+                    if (lead) {
+                        db.close();
+                        return callback(err, lead);
+                    }
+                    db.close();
+                    return callback();
+                });
+            }
+        });
+    }
+
     updateEnrichedLeadInformation(lead_id, rich_information, callback) {
         new Dao().findLead(lead_id, function (err, result) {
             if (err) {
