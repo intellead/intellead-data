@@ -175,6 +175,22 @@ app.post('/lead-info', function(req, res){
     });
 });
 
+app.post('/lead-info-by-email', function(req, res){
+    request({ url: securityUrl + '/' + req.header('token')}, function(error, response, authBody) {
+        if (response.statusCode != 200) return res.sendStatus(403);
+        var email = req.body.email;
+        new Dao().findLeadByEmail(email, function (err, lead) {
+            if (err) {
+                return res.sendStatus(400);
+            }
+            if (lead) {
+                return res.status(200).send(lead);
+            }
+            return res.sendStatus(204);
+        });
+    });
+});
+
 app.post('/update-enriched-lead-information', function(req, res){
     request({ url: securityUrl + '/' + req.header('token')}, function(error, response, authBody) {
         if (response.statusCode != 200) return res.sendStatus(403);
