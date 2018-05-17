@@ -55,6 +55,7 @@ app.post('/rd-webhook', function (req, res) {
             var lead = leads[index];
             lead._id = lead.id;
             delete lead.id;
+            lead.customer = JSON.parse(authBody).id;
             new Dao().saveAndUpdate(lead, function (err, result) {
                 if (err) {
                     var mailService = new MailService();
@@ -77,7 +78,7 @@ app.post('/lead-info', function(req, res){
     request({ url: securityUrl + '/' + req.header('token')}, function(error, response, authBody) {
         if (response.statusCode != 200) return res.sendStatus(403);
         var lead_id = req.body.lead_id;
-        new Dao().findLead(lead_id, function (err, lead) {
+        new Dao().findLead(JSON.parse(authBody).id, lead_id, function (err, lead) {
             if (err) {
                 return res.sendStatus(400);
             }
@@ -93,7 +94,7 @@ app.post('/lead-info-by-email', function(req, res){
     request({ url: securityUrl + '/' + req.header('token')}, function(error, response, authBody) {
         if (response.statusCode != 200) return res.sendStatus(403);
         var email = req.body.email;
-        new Dao().findLeadByEmail(email, function (err, lead) {
+        new Dao().findLeadByEmail(JSON.parse(authBody).id, email, function (err, lead) {
             if (err) {
                 return res.sendStatus(400);
             }
@@ -110,7 +111,7 @@ app.post('/update-enriched-lead-information', function(req, res){
         if (response.statusCode != 200) return res.sendStatus(403);
         var lead_id = req.body.lead_id;
         var rich_information = req.body.rich_information;
-        new Dao().updateEnrichedLeadInformation(lead_id, rich_information, function (err, result) {
+        new Dao().updateEnrichedLeadInformation(JSON.parse(authBody).id, lead_id, rich_information, function (err, result) {
             if (err) {
                 var mailService = new MailService();
                 mailService.sendMail('[intellead-data] service [/update-enriched-lead-information] is in error ', err);
@@ -132,7 +133,7 @@ app.post('/update-enrich-attempts', function(req, res){
         console.log('lead_id: ' + lead_id);
         var attempts = req.body.attempts;
         console.log('attempts: ' + JSON.stringify(attempts));
-        new Dao().updateEnrichAttempts(lead_id, attempts, function (err, result) {
+        new Dao().updateEnrichAttempts(JSON.parse(authBody).id, lead_id, attempts, function (err, result) {
             if (err) {
                 var mailService = new MailService();
                 mailService.sendMail('[intellead-data] service [/update-enrich-attempts] is in error ', err);
@@ -158,7 +159,7 @@ app.post('/save-lead-status', function(req, res){
             'lead_status': lead_status['value'],
             'lead_status_proba': lead_status['proba']
         };
-        new Dao().saveLeadStatus(lead_id, lead_status_json, function (err, result) {
+        new Dao().saveLeadStatus(JSON.parse(authBody).id, lead_id, lead_status_json, function (err, result) {
             if (err) {
                 var mailService = new MailService();
                 mailService.sendMail('[intellead-data] service [/save-leadh-status] is in error ', err);
