@@ -40,7 +40,7 @@ class Dao {
                 callback(err);
             } else {
                 db.collection('leads').updateOne(
-                    {"_id" : lead._id},
+                    {$and : [{"_id" : lead._id}, {"lead.customer" : lead.customer}]},
                     {lead},
                     {upsert : true},
                     function(err, result) {
@@ -55,13 +55,41 @@ class Dao {
         });
     }
 
-    findLead(id, callback) {
+    findLead(customer, id, callback) {
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
                 callback(err);
             } else {
-                db.collection('leads').findOne({"_id" : id}, function(err, lead) {
+                db.collection('leads').findOne(
+                    {$and : [{"_id" : id}, {"lead.customer" : customer}]},
+                    function(err, lead) {
+                        if (err) {
+                            console.log(err);
+                            db.close();
+                            return callback(err);
+                        }
+                        if (lead) {
+                            db.close();
+                            return callback(err, lead);
+                        }
+                        db.close();
+                        return callback();
+                    }
+                );
+            }
+        });
+    }
+
+    findLeadByEmail(customer, email, callback) {
+        MongoClient.connect(url, function (err, db) {
+            if (err) {
+                console.log('Unable to connect to the mongoDB server. Error:', err);
+                callback(err);
+            } else {
+                db.collection('leads').findOne(
+                    {$and : [{"lead.email" : email}, {"lead.customer" : customer}]},
+                    function(err, lead) {
                     if (err) {
                         console.log(err);
                         db.close();
@@ -78,31 +106,8 @@ class Dao {
         });
     }
 
-    findLeadByEmail(email, callback) {
-        MongoClient.connect(url, function (err, db) {
-            if (err) {
-                console.log('Unable to connect to the mongoDB server. Error:', err);
-                callback(err);
-            } else {
-                db.collection('leads').findOne({"lead.email" : email}, function(err, lead) {
-                    if (err) {
-                        console.log(err);
-                        db.close();
-                        return callback(err);
-                    }
-                    if (lead) {
-                        db.close();
-                        return callback(err, lead);
-                    }
-                    db.close();
-                    return callback();
-                });
-            }
-        });
-    }
-
-    updateEnrichedLeadInformation(lead_id, rich_information, callback) {
-        new Dao().findLead(lead_id, function (err, result) {
+    updateEnrichedLeadInformation(customer, lead_id, rich_information, callback) {
+        new Dao().findLead(customer, lead_id, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -115,7 +120,7 @@ class Dao {
                         callback(err);
                     } else {
                         db.collection('leads').update(
-                            {"_id": lead_id},
+                            {$and : [{"_id" : lead_id}, {"lead.customer" : customer}]},
                             {"lead" : lead_enriched},
                             function (err, result) {
                                 if (err) {
@@ -138,8 +143,8 @@ class Dao {
         });
     }
 
-    updateEnrichAttempts(lead_id, attempts, callback) {
-        new Dao().findLead(lead_id, function (err, result) {
+    updateEnrichAttempts(customer, lead_id, attempts, callback) {
+        new Dao().findLead(customer, lead_id, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -152,7 +157,7 @@ class Dao {
                         return callback(err);
                     } else {
                         db.collection('leads').update(
-                            {"_id": lead_id},
+                            {$and : [{"_id" : lead_id}, {"lead.customer" : customer}]},
                             {"lead" : lead_with_enrich_attempts},
                             function (err, result) {
                                 if (err) {
@@ -175,8 +180,8 @@ class Dao {
         });
     }
 
-    saveLeadStatus(lead_id, lead_status, callback) {
-        new Dao().findLead(lead_id, function (err, result) {
+    saveLeadStatus(customer, lead_id, lead_status, callback) {
+        new Dao().findLead(customer, lead_id, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -189,7 +194,7 @@ class Dao {
                         return callback(err);
                     } else {
                         db.collection('leads').update(
-                            {"_id": lead_id},
+                            {$and : [{"_id" : lead_id}, {"lead.customer" : customer}]},
                             {"lead" : lead_with_lead_status},
                             function (err, result) {
                                 if (err) {
